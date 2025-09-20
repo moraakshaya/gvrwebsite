@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ open: false, dropdowns: {company: false, products: false, services: false}, scrolled: false }"
+    x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 50 })">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Glass Mobile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-down {
+            animation: slideDown 0.7s ease-out forwards;
+        }
+
+        @keyframes dropdownSlide {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .dropdown-animate {
+            animation: dropdownSlide 0.3s ease-out forwards;
+        }
+
+        @keyframes staggerFade {
+            from {
+                transform: translateY(-5px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .stagger-item {
+            opacity: 0;
+            animation: staggerFade 0.3s ease forwards;
+        }
+
+        .stagger-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+
+<body class="relative min-h-screen bg-[url('./assests/gvrbackground.jpg')] bg-cover bg-center">
+    <div class="absolute inset-0 bg-black/90"></div>
+    <nav x-data="{ open: false, dropdowns: { company: false, products: false, services: false }, activeLink: '' }"
+        class="fixed top-0 left-0 w-full z-50 animate-slide-down transition-all duration-700"
+        :class="scrolled ? 'bg-gray-900' : 'bg-transparent'">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 flex items-center justify-between h-16 text-white">
+            <!-- Logo -->
+            <a href="/" class="text-xl font-bold">MyLogo</a>
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <!-- Company -->
+                <div class="group h-16 flex items-center relative">
+                    <button class="flex items-center gap-1 group-hover:text-yellow-400 text-xl">
+                        Company
+                        <!-- Down arrow -->
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 top-full hidden group-hover:block bg-gray-900 rounded-lg shadow-lg p-2 text-white z-50 min-w-[28rem] dropdown-animate">
+                        <!-- dropdown links -->
+                        <a href="aboutus.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">About
+                            Us</a>
+                        <a href="portfolio.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Portfolio
+                            - <span class="text-white/50">Explore our all overview</span></a>
+                        <a href="team.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Team -
+                            <span class="text-white/50">We are friendly join our team</span></a>
+                        <a href="service.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Services
+                            - <span class="text-white/50">Happy to help you</span></a>
+                        <a href="case-study.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Case
+                            Study - <span class="text-white/50">Know more about our case study</span></a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="group h-16 flex items-center relative">
+                    <button class="flex items-center gap-1 group-hover:text-yellow-400 text-xl">
+                        Services
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 top-full hidden group-hover:block bg-gray-900 rounded-lg shadow-lg p-2 text-white z-50 min-w-[28rem] dropdown-animate">
+                        <!-- dropdown links -->
+                        <a href="cloud-migration-maintenance-deployment.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Cloud
+                            Migration, Maintenance & Deployment</a>
+                        <a href="data-center-operations.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Data
+                            Center Operations</a>
+                        <a href="mobile-applications-development.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Mobile
+                            Applications Development</a>
+                        <a href="security-solutions.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Security
+                            Solutions</a>
+                        <a href="ai-ml-solutions.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">AI & ML
+                            Solutions</a>
+                        <a href="web-based-community-solutions.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Web
+                            Based Community Solutions</a>
+                        <a href="enterprise-applications-integration.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Enterprise
+                            Applications Integration</a>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="group h-16 flex items-center relative">
+                    <button class="flex items-center gap-1 group-hover:text-yellow-400 text-xl">
+                        Products
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div
+                        class="absolute left-0 top-full hidden group-hover:block bg-gray-900 rounded-lg shadow-lg p-2 text-white z-50 min-w-[28rem] dropdown-animate">
+                        <!-- dropdown links -->
+                        <a href="ayucare(hms).html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Ayucare
+                            (HMS)</a>
+                        <a href="burserele.html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">BURSERELE</a>
+                        <a href="empora(hrm).html"
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">EMPORA
+                            (HRM)</a>
+                    </div>
+                </div>
+
+                <!-- Single Links -->
+                <a href="careers.html" class="hover:text-yellow-400 text-xl">Careers</a>
+                <a href="blog.html" class="hover:text-yellow-400 text-xl">Blog</a>
+            </div>
+
+            <!-- Get Started (Desktop) -->
+            <div class="hidden lg:block">
+                <a href="contact.html"
+                    class="relative flex items-center gap-2 px-6 py-2 bg-transparent border border-yellow-400 text-yellow-400 rounded-full font-semibold overflow-hidden group">
+
+                    <!-- Wrapper for text + icon -->
+                    <span class="relative h-6 flex items-center overflow-hidden">
+                        <!-- Default content -->
+                        <span class="flex items-center gap-2 animate-none group-hover:animate-roll-up-down">
+                            Get Started
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                viewBox="0 0 24 24">
+                                <!-- line -->
+                                <line x1="4" y1="12" x2="20" y2="12" />
+                                <!-- arrow head -->
+                                <polyline points="14 6 20 12 14 18" />
+                            </svg>
+                        </span>
+                    </span>
+
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button @click="open = !open"
+                class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
+                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Nav -->
+        <div x-show="open" x-transition.opacity class="lg:hidden absolute top-16 left-0 w-full 
+            bg-gray-900
+            border-t border-white/20 text-white dropdown-animate rounded-b-xl shadow-lg">
+            <div class="flex flex-col p-4 space-y-1"> <!-- ✅ Increased space-y for separation -->
+
+                <!-- Company -->
+                <div class="space-y-1"> <!-- ✅ Space between button and dropdown -->
+                    <button @click="dropdowns.company = !dropdowns.company"
+                        class="w-full text-left flex justify-between items-center px-3 py-2 rounded-lg hover:bg-white/10"
+                        :class="dropdowns.company ? 'text-yellow-400' : 'text-white'">
+                        Company
+                        <span x-show="!dropdowns.company">+</span>
+                        <span x-show="dropdowns.company">-</span>
+                    </button>
+                    <div x-show="dropdowns.company" x-transition.opacity x-transition.duration.300ms
+                        class="ml-4 mt-2 space-y-2 px-1 py-1 dropdown-animate border border-white/50 rounded-lg">
+                        <a href="aboutus.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">About
+                            Us</a>
+                        <a href="portfolio.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Portfolio
+                            - <span class="text-white/50">Explore our all overview</span></a>
+                        <a href="team.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Team
+                            - <span class="text-white/50">We are friendly join our team</span></a>
+                        <a href="service.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Services
+                            - <span class="text-white/50">Happy to help you</span></a>
+                        <a href="case-study.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Case
+                            Study - <span class="text-white/50">Know more about our case study</span></a>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="space-y-3">
+                    <button @click="dropdowns.services = !dropdowns.services"
+                        class="w-full text-left flex justify-between items-center px-3 py-2 rounded-lg hover:bg-white/10"
+                        :class="dropdowns.services ? 'text-yellow-400' : 'text-white'">
+                        Services
+                        <span x-show="!dropdowns.services">+</span>
+                        <span x-show="dropdowns.services">-</span>
+                    </button>
+                    <div x-show="dropdowns.services" x-transition.opacity x-transition.duration.300ms
+                        class="ml-4 mt-2 space-y-2 px-1 py-1 dropdown-animate border border-white/50 rounded-lg">
+                        <a href="cloud-migration-maintenance-deployment.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400stagger-item">Cloud
+                            Migration, Maintenance & Deployment</a>
+                        <a href="data-center-operations.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Data
+                            Center Operations</a>
+                        <a href="mobile-applications-development.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Mobile
+                            Applications Development</a>
+                        <a href="security-solutions.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Security
+                            Solutions</a>
+                        <a href="ai-ml-solutions.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">AI &
+                            ML Solutions</a>
+                        <a href="web-based-community-solutions.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Web
+                            Based Community Solutions</a>
+                        <a href="enterprise-applications-integration.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Enterprise
+                            Applications Integration</a>
+                    </div>
+                </div>
+
+                <!-- Products -->
+                <div class="space-y-3">
+                    <button @click="dropdowns.products = !dropdowns.products"
+                        class="w-full text-left flex justify-between items-center px-3 py-2 rounded-lg hover:bg-white/10"
+                        :class="dropdowns.products ? 'text-yellow-400' : 'text-white'">
+                        Products
+                        <span x-show="!dropdowns.products">+</span>
+                        <span x-show="dropdowns.products">-</span>
+                    </button>
+                    <div x-show="dropdowns.products" x-transition.opacity x-transition.duration.300ms
+                        class="ml-4 mt-2 px-1 py-1 space-y-2 dropdown-animate border border-white/50 rounded-lg">
+                        <a href="ayucare(hms).html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Ayucare
+                            (HMS)</a>
+                        <a href="burserele.html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">BURSERELE</a>
+                        <a href="empora(hrm).html"
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">EMPORA
+                            (HRM)</a>
+                    </div>
+                </div>
+
+                <!-- Single links -->
+                <a href="careers.html" @click="activeLink = 'careers'"
+                    class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                    :class="activeLink === 'careers' ? 'text-yellow-400' : 'text-white'">
+                    Careers
+                </a>
+
+                <a href="blog.html" @click="activeLink = 'blog'" class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                    :class="activeLink === 'blog' ? 'text-yellow-400' : 'text-white'">
+                    Blog
+                </a>
+
+                <!-- Get Started (Mobile with click animation) -->
+                <div class="block lg:hidden" x-data="{ animate: false }">
+                    <a href="contact.html" @click="animate = true; setTimeout(() => animate = false, 800)"
+                        class="relative flex items-center justify-center gap-2 px-6 py-2 bg-transparent border border-yellow-400 text-yellow-400 rounded-full font-semibold overflow-hidden">
+
+                        <!-- Wrapper for text + icon -->
+                        <span class="relative h-6 flex items-center overflow-hidden">
+                            <!-- Animated wrapper (text + arrow together) -->
+                            <span class="flex items-center gap-2" :class="{ 'animate-roll-up-down': animate }">
+                                Get Started
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" viewBox="0 0 24 24">
+                                    <!-- line -->
+                                    <line x1="4" y1="12" x2="20" y2="12" />
+                                    <!-- arrow head -->
+                                    <polyline points="14 6 20 12 14 18" />
+                                </svg>
+                            </span>
+                        </span>
+
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <style>
+        @keyframes rollUpDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            45% {
+                transform: translateY(-100%);
+            }
+
+            55% {
+                transform: translateY(100%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .group-hover\:animate-roll-up-down:hover {
+            animation: rollUpDown 0.7s ease forwards;
+        }
+
+
+        .animate-roll-up-down {
+            animation: rollUpDown 0.7s ease forwards;
+        }
+    </style>
+
+    <!--  TEAM MEMBER BANNER SECTION-->
+      <section id="team-banner-section" class="relative w-full bg-black/10 pt-[10%] pb-0 md:pt-[5%] overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
+        <p id="team-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
+            Team Details <span class="text-yellow-400">😍</span>
+        </p>
+        <h2 id="team-title"
+            class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
+            Team Details
+        </h2>
+    </div>
+</section>
+<style>
+    @keyframes teamSlideUp {
+        0% {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animate-teamSlideUp {
+        animation: teamSlideUp 0.8s ease-out forwards;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const teamSubtitle = document.getElementById("team-subtitle");
+        const teamTitle = document.getElementById("team-title");
+        const teamSection = document.getElementById("team-banner-section");
+
+        const teamObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        teamSubtitle.classList.remove("animate-teamSlideUp");
+                        teamTitle.classList.remove("animate-teamSlideUp");
+                        void teamSubtitle.offsetWidth;
+                        void teamTitle.offsetWidth;
+                        teamSubtitle.classList.add("animate-teamSlideUp");
+                        setTimeout(() => {
+                            teamTitle.classList.add("animate-teamSlideUp");
+                        }, 500);
+                    } else {
+                        teamSubtitle.classList.remove("animate-teamSlideUp");
+                        teamTitle.classList.remove("animate-teamSlideUp");
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        teamObserver.observe(teamSection);
+    });
+</script>
+
+<section id="glow-image-section" class="relative w-full bg-black/10 py-10 overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="relative z-10 flex justify-center items-center">
+        <div class="glow-circle">
+            <img src="./assests/team2.jpg" alt="Glowing Image" class="rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover">
+        </div>
+    </div>
+</section>
+<style>
+    @keyframes pulseGlow {
+        0%, 100% {
+            box-shadow: 0 0 10px 3px rgba(0, 128, 255, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 15px 5px rgba(0, 128, 255, 0.5);
+        }
+    }
+
+    .glow-circle {
+        position: relative;
+        display: inline-block;
+        border-radius: 50%;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        animation: pulseGlow 2s infinite ease-in-out;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .glow-circle:hover {
+        transform: scale(1.05);
+    }
+
+    .glow-circle img {
+        display: block;
+        border-radius: 50%;
+    }
+    @media (max-width: 768px) {
+        .glow-circle img {
+            width: 48; 
+            height: 48; 
+        }
+    }
+</style>
+
+<section id="teammemberdetail-section" class="relative w-full bg-black/10 py-2 md:py-10 overflow-hidden">
+  <div class="absolute inset-0 bg-black/10"></div>
+  <div class="relative container mx-auto grid md:grid-cols-2 gap-12 px-2 md:px-20 z-10">
+    
+    <!-- Left Part -->
+    <div class="text-white flex flex-col justify-center h-full space-y-6 md:ps-20">
+      <!-- Heading -->
+      <h2 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-heading">
+        Vamshikrishna Punjala
+      </h2>
+
+      <!-- Key Points -->
+      <ul class="space-y-3 text-md md:text-lg" id="teammemberdetail-keypoints">
+        <li class="opacity-0 translate-y-10 transition-all duration-700">Responsibility: Project Manager</li>
+        <li class="opacity-0 translate-y-10 transition-all duration-700">Experience: 15 Years</li>
+        <li class="opacity-0 translate-y-10 transition-all duration-700">Email: <a href="mailto:vamshikrishna.punjala@gvrinfosystems.com" class="text-blue-400 hover:underline">vamshikrishna.punjala@gvrinfosystems.com</a></li>
+        <li class="opacity-0 translate-y-10 transition-all duration-700">Phone: 9985815702</li>
+        <li class="opacity-0 translate-y-10 transition-all duration-700 flex gap-4">
+          <!-- Social Media Icons -->
+          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-facebook"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Part -->
+    <div class="text-white flex flex-col justify-center">
+      <!-- Heading -->
+      <h3 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-skills-heading">
+        Professional Skills
+      </h3>
+
+      <!-- Para -->
+      <p class="mt-4 text-md md:text-lg text-yellow-400 opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-skills-para">
+        Project Management
+      </p>
+      <div class="mt-6 space-y-6" id="teammemberdetail-counters">
+        <!-- Skill 1 -->
+        <div class="opacity-0 translate-y-10 transition-all duration-700">
+          <div class="flex justify-between items-center mb-1">
+            <span>Product Development</span>
+            <span class="teammemberdetail-counter font-bold" data-target="98">0%</span>
+          </div>
+          <div class="w-full bg-white/20 h-2 rounded">
+            <div class="teammemberdetail-bar bg-blue-500 h-2 rounded w-0" data-target="98"></div>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="opacity-0 translate-y-10 transition-all duration-700">
+          <div class="flex justify-between items-center mb-1">
+            <span>Problem-Solving</span>
+            <span class="teammemberdetail-counter font-bold" data-target="88">0%</span>
+          </div>
+          <div class="w-full bg-white/20 h-2 rounded">
+            <div class="teammemberdetail-bar bg-green-500 h-2 rounded w-0" data-target="88"></div>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="opacity-0 translate-y-10 transition-all duration-700">
+          <div class="flex justify-between items-center mb-1">
+            <span>Communication Skills</span>
+            <span class="teammemberdetail-counter font-bold" data-target="99">0%</span>
+          </div>
+          <div class="w-full bg-white/20 h-2 rounded">
+            <div class="teammemberdetail-bar bg-purple-500 h-2 rounded w-0" data-target="99"></div>
+          </div>
+        </div>
+        <!-- Skill 4 -->
+        <div class="opacity-0 translate-y-10 transition-all duration-700">
+          <div class="flex justify-between items-center mb-1">
+            <span>Passion for Helping</span>
+            <span class="teammemberdetail-counter font-bold" data-target="77">0%</span>
+          </div>
+          <div class="w-full bg-white/20 h-2 rounded">
+            <div class="teammemberdetail-bar bg-red-500 h-2 rounded w-0" data-target="77"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  const teammemberdetailSection = document.getElementById("teammemberdetail-section");
+  const teammemberdetailHeading = document.getElementById("teammemberdetail-heading");
+  const teammemberdetailSkillsHeading = document.getElementById("teammemberdetail-skills-heading");
+  const teammemberdetailSkillsPara = document.getElementById("teammemberdetail-skills-para");
+  const teammemberdetailKeyPoints = teammemberdetailSection.querySelectorAll("#teammemberdetail-keypoints li");
+  const teammemberdetailCounters = teammemberdetailSection.querySelectorAll(".teammemberdetail-counter");
+  const teammemberdetailBars = teammemberdetailSection.querySelectorAll(".teammemberdetail-bar");
+  const teammemberdetailSkillBlocks = teammemberdetailSection.querySelectorAll("#teammemberdetail-counters > div");
+
+  let teammemberdetailAnimated = false;
+
+  const teammemberdetailObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !teammemberdetailAnimated) {
+        teammemberdetailAnimated = true;
+        teammemberdetailHeading.classList.remove("opacity-0", "translate-y-10");
+        teammemberdetailKeyPoints.forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.remove("opacity-0", "translate-y-10");
+          }, (index + 1) * 400);
+        });
+        setTimeout(() => {
+          teammemberdetailSkillsHeading.classList.remove("opacity-0", "translate-y-10");
+        }, 2500);
+        setTimeout(() => {
+          teammemberdetailSkillsPara.classList.remove("opacity-0", "translate-y-10");
+        }, 3000);
+        teammemberdetailSkillBlocks.forEach((block, i) => {
+          setTimeout(() => {
+            block.classList.remove("opacity-0", "translate-y-10");
+
+            const counter = teammemberdetailCounters[i];
+            const bar = teammemberdetailBars[i];
+            let target = +counter.getAttribute("data-target");
+            let count = 0;
+            let step = Math.ceil(target / 50);
+            let interval = setInterval(() => {
+              count += step;
+              if (count >= target) {
+                counter.textContent = target + "%";
+                clearInterval(interval);
+              } else {
+                counter.textContent = count + "%";
+              }
+            }, 50);
+            bar.style.transition = "width 2s ease";
+            setTimeout(() => {
+              bar.style.width = target + "%";
+            }, 200);
+
+          }, 3500 + (i * 800)); 
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  teammemberdetailObserver.observe(teammemberdetailSection);
+</script>
+
+
+
+
+    <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
+        <div class="relative z-10">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gray-700">
+
+                <!-- Left: Logo + Address -->
+                <div>
+                    <img src="logo.png" alt="GVR Logo" class="h-12 mb-4">
+                    <p class="text-md mb-4">
+                        Plot No. 3, 3rd Floor, Sri Sai Enclave, Old Bowenpally, HYDERABAD, INDIA
+                    </p>
+                </div>
+
+                <!-- Middle (empty for spacing) -->
+                <div>
+                    <div class="flex items-center mb-3">
+                        <i class="fas fa-envelope text-blue-400 mr-2"></i>
+                        <a href="mailto:info@gvr.com" class="hover:text-white text-md">info@gvrinfosystems.com</a>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-blue-400 mr-2"></i>
+                        <a href="tel:+911234567890" class="hover:text-white text-md">+916300279339</a>
+                    </div>
+                </div>
+
+                <!-- Right: Newsletter -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Newsletter</h3>
+                    <p class="text-md mb-4">
+                        Sign up to GVR weekly newsletter to get the latest updates.
+                    </p>
+                    <form id="newsletter-form" class="flex">
+                        <input type="email" id="user_email" placeholder="Enter your email here.."
+                            class="w-full px-3 py-2 rounded-l-md focus:outline-none text-black" required>
+
+                        <button id="subscribe-btn" type="submit"
+                            class="bg-blue-500 text-white px-4 rounded-r-md hover:bg-blue-600 flex items-center justify-center relative">
+                            <i id="send-icon" class="fas fa-paper-plane"></i>
+                            <span id="loading-spinner"
+                                class="hidden animate-spin ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
+                        </button>
+                    </form>
+                    <!-- Messages -->
+                    <p id="form-success" class="text-green-400 mt-2 hidden">✅ Thank you! Your email has been sent.</p>
+                    <p id="form-error" class="text-red-400 mt-2 hidden">❌ Failed to send. Please try again later.</p>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 py-10 border-b border-gray-700">
+                <!-- Information -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Information</h3>
+                    <ul class="space-y-2 text-md">
+                        <li><a href="aboutus.html" class="hover:text-white">About GVR</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
+                        <li><a href="team.html" class="hover:text-white">Team</a></li>
+                        <li><a href="service.html" class="hover:text-white">Services</a></li>
+                        <li><a href="case-study.html" class="hover:text-white">Case Study</a></li>
+                        <li><a href="careers.html" class="hover:text-white">Careers</a></li>
+                        <li><a href="blog.html" class="hover:text-white">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                        <!-- <li><a href="/privacy" class="hover:text-white">Privacy Policy</a></li> -->
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Services</h3>
+                    <ul class="space-y-2 text-md">
+                        <li><a href="cloud-migration-maintenance-deployment.html" class="hover:text-white">Cloud
+                                Migration, Maintenance &
+                                Deployment</a></li>
+                        <li><a href="data-center-operations.html" class="hover:text-white">Data Center Operations</a>
+                        </li>
+                        <li><a href="mobile-applications-development.html" class="hover:text-white">Mobile Application
+                                Development</a></li>
+                        <li><a href="security-solutions.html" class="hover:text-white">Security Solutions</a></li>
+                        <li><a href="ai-ml-solutions.html" class="hover:text-white">AI & ML Solutions</a></li>
+                        <li><a href="web-based-community-solutions.html" class="hover:text-white">Web Based Community
+                                Solutions</a></li>
+                        <li><a href="enterprise-applications-integration.html" class="hover:text-white">Enterprise
+                                Application Integration</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-3">Products</h3>
+                    <ul class="space-y-2 text-md">
+                        <li><a href="ayucare(hms).html" class="hover:text-white">Ayucare(HMS)</a></li>
+                        <li><a href="burserele.html" class="hover:text-white">BURSERELE</a></li>
+                        <li><a href="empora(hrm).html" class="hover:text-white">EMPORA(HRM)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-sm text-gray-400 py-5">
+                © 2025 GVR. All rights reserved. | Developed by Prodbiz Solutions Private Limited
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("YOUR_USER_ID");
+        })();
+
+        const form = document.getElementById("newsletter-form");
+        const btn = document.getElementById("subscribe-btn");
+        const icon = document.getElementById("send-icon");
+        const spinner = document.getElementById("loading-spinner");
+        const successMsg = document.getElementById("form-success");
+        const errorMsg = document.getElementById("form-error");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            successMsg.classList.add("hidden");
+            errorMsg.classList.add("hidden");
+            btn.disabled = true;
+            icon.classList.add("hidden");
+            spinner.classList.remove("hidden");
+
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                user_email: document.getElementById("user_email").value
+            }).then(function () {
+                successMsg.classList.remove("hidden");
+                successMsg.classList.add("fade-in");
+                document.getElementById("user_email").value = "";
+                btn.disabled = false;
+                icon.classList.remove("hidden");
+                spinner.classList.add("hidden");
+            }, function (error) {
+                errorMsg.classList.remove("hidden");
+                errorMsg.classList.add("fade-in");
+                btn.disabled = false;
+                icon.classList.remove("hidden");
+                spinner.classList.add("hidden");
+            });
+        });
+    </script>
+
+
+
+</body>
+
+</html>
