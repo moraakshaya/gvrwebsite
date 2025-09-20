@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-       
+        [x-cloak] { display: none !important; }
         @keyframes slideDown {
             from {
                 transform: translateY(-100%);
@@ -212,18 +212,18 @@
             <!-- Mobile Toggle -->
             <button @click="open = !open"
                 class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
-                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
+                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
         <!-- Mobile Nav -->
-        <div x-show="open" x-transition.opacity class="lg:hidden absolute top-16 left-0 w-full 
+        <div x-show="open" x-transition.opacity x-cloak class="lg:hidden absolute top-16 left-0 w-full 
             bg-gray-900
             border-t border-white/20 text-white dropdown-animate rounded-b-xl shadow-lg">
             <div class="flex flex-col p-4 space-y-1"> <!-- ✅ Increased space-y for separation -->
