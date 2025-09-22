@@ -861,28 +861,28 @@
 </script>
 
 <!-- TRANSFORMATIVE SOLUTIONS SECTION -->
-<section id="chat-section" class="relative w-full bg-black/10 py-20 overflow-hidden">
+<section id="chat-section" class="relative w-full bg-black/10 py-10 md:py-20 overflow-hidden">
   <div class="absolute inset-0 bg-black/10"></div>
   <div class="relative z-10 mx-auto px-6 max-w-7xl">
     
     <!-- Top Content -->
-    <div class="w-full text-center space-y-6">
-      <h2 id="chat-top-title" class="opacity-0 text-3xl md:text-4xl font-bold text-yellow-500">
+    <div class="w-full text-center space-y-3">
+      <h2 id="chat-top-title" class="opacity-0 text-2xl md:text-4xl font-bold text-white">
         Transformative Solutions Tailored to Your Needs
       </h2>
-      <p id="chat-top-subtitle" class="opacity-0 text-gray-300 text-md md:text-lg max-w-3xl mx-auto md:pb-[8%]">
+      <p id="chat-top-subtitle" class="opacity-0 text-gray-300 text-sm md:text-lg max-w-3xl mx-auto md:pb-[8%]">
         Driving Growth and Innovation Through Customized Strategies
       </p>
       <div id="chat-carousel-wrapper" class="flex justify-center opacity-0">
         <div class="w-[20rem] h-[20rem] md:w-[28rem] md:h-[19rem] chat-perspective-1000">
-          <div class="relative w-full h-full chat-transform-style-3d transition-transform duration-500" id="chat-carousel-inner"></div>
+          <div class="relative w-full h-full mt-10 md:mt-5 chat-transform-style-3d transition-transform duration-500" id="chat-carousel-inner"></div>
         </div>
       </div>
     </div>
 
     <!-- Bottom Content -->
-    <div class="w-full text-center space-y-6 mt-12">
-      <h2 id="chat-bottom-title" class="opacity-0 text-3xl md:text-3xl font-bold text-yellow-500">
+    <div class="w-full text-center space-y-6 mt-6 md:mt-12">
+      <h2 id="chat-bottom-title" class="opacity-0 text-2xl md:text-4xl font-bold text-white">
         Ready to Work, Let's Chat
       </h2>
       <p id="chat-bottom-para" class="opacity-0 text-gray-300 text-md md:text-lg max-w-2xl mx-auto">
@@ -917,32 +917,38 @@
   }
 </style>
 <script>
-  // Carousel Data
-  const chatSlidesData = [
-    { icon: "fa-lightbulb", title: "Strategic Planning and Execution", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
-    { icon: "fa-bolt", title: "Business Process Optimization", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
-    { icon: "fa-digital-tachograph", title: "Digital Transformation Consulting", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
-    { icon: "fa-chess", title: "Strategic Planning and Execution", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
-    { icon: "fa-people-arrows", title: "Change Management Solutions", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
-    { icon: "fa-chart-line", title: "Performance Metrics and KPI Development", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." }
-  ];
-
-  const chatCarouselInner = document.getElementById("chat-carousel-inner");
-  const chatNumSlides = chatSlidesData.length;
-  const chatTheta = 360 / chatNumSlides;
-
+ const chatSlidesData = [
+  { icon: "fa-lightbulb", title: "Strategic Planning and Execution", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
+  { icon: "fa-bolt", title: "Business Process Optimization", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
+  { icon: "fa-digital-tachograph", title: "Digital Transformation Consulting", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
+  { icon: "fa-chess", title: "Strategic Planning and Execution", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
+  { icon: "fa-people-arrows", title: "Change Management Solutions", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." },
+  { icon: "fa-chart-line", title: "Performance Metrics and KPI Development", desc: "Our consulting services are customized to suit the unique needs and goals of each client, ensuring precise alignment with their business objectives." }
+];
+const chatCarouselInner = document.getElementById("chat-carousel-inner");
+const chatNumSlides = chatSlidesData.length;
+const chatTheta = 360 / chatNumSlides;
+function buildCarousel() {
+  chatCarouselInner.innerHTML = ""; 
+  const isMobile = window.innerWidth < 768;
+  const chatTranslateZ = isMobile ? 135 : 280;
   chatSlidesData.forEach((item, i) => {
     const slide = document.createElement("div");
-    slide.className = "absolute w-40 h-48 md:w-48 md:h-52 bg-white text-black flex flex-col items-center justify-center rounded-xl shadow-lg left-1/2 -translate-x-1/2 -translate-y-1/2 text-center";
-    slide.style.transform = `rotateY(${i * chatTheta}deg) translateZ(280px)`;
+    slide.className = "absolute w-32 h-auto md:w-48 md:h-52 bg-white text-black flex flex-col items-center justify-center rounded-xl shadow-lg left-1/2 -translate-x-1/2 -translate-y-1/2 text-center";
+    slide.style.transform = `rotateY(${i * chatTheta}deg) translateZ(${chatTranslateZ}px)`;
 
     slide.innerHTML = `
-      <i class="fa ${item.icon} text-2xl md:text-3xl text-blue-400 mb-2"></i>
-      <h3 class="text-xs md:text-sm font-semibold">${item.title}</h3>
-      <p class="text-[10px] md:text-xs text-gray-600 mt-1">${item.desc}</p>
+      <i class="fa ${item.icon} text-lg md:text-3xl text-blue-400 mb-0"></i>
+      <h3 class="text-[11px] md:text-sm font-semibold">${item.title}</h3>
+      <p class="text-[10px] md:text-xs text-gray-600 md:mt-1">${item.desc}</p>
     `;
     chatCarouselInner.appendChild(slide);
   });
+}
+buildCarousel();
+window.addEventListener("resize", () => {
+  buildCarousel();
+});
   const chatObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting) {
@@ -981,6 +987,7 @@
 
   chatObserver.observe(document.getElementById("chat-section"));
 </script>
+
 
 
 
