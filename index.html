@@ -13,7 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
+
         @keyframes slideDown {
             from {
                 transform: translateY(-100%);
@@ -29,6 +32,7 @@
         .animate-slide-down {
             animation: slideDown 0.7s ease-out forwards;
         }
+
         @keyframes dropdownSlide {
             from {
                 transform: translateY(-10px);
@@ -44,6 +48,7 @@
         .dropdown-animate {
             animation: dropdownSlide 0.3s ease-out forwards;
         }
+
         @keyframes staggerFade {
             from {
                 transform: translateY(-5px);
@@ -212,12 +217,12 @@
             <!-- Mobile Toggle -->
             <button @click="open = !open"
                 class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
-                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -315,7 +320,8 @@
                 </div>
 
                 <!-- Single links -->
-                <a href="careers.html" @click="activeLink = 'careers'" class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                <a href="careers.html" @click="activeLink = 'careers'"
+                    class="block px-3 py-2 rounded-lg hover:bg-white/10"
                     :class="activeLink === 'careers' ? 'text-yellow-400' : 'text-white'">
                     Careers
                 </a>
@@ -409,6 +415,7 @@
             display: inline-block;
             animation: rollDown 3s ease-in-out infinite;
         }
+
         @keyframes slideInRight {
             from {
                 transform: translateX(80px);
@@ -424,6 +431,7 @@
         .animate-slide-in {
             animation: slideInRight 1s ease forwards;
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -456,7 +464,7 @@
             animation: popUp 0.8s ease forwards;
         }
 
-       
+
         @keyframes float {
 
             0%,
@@ -473,7 +481,7 @@
             animation: float 3s ease-in-out infinite;
         }
 
-       
+
         .banner-btn {
             background-color: #1f2937;
             color: #FFD700;
@@ -490,11 +498,13 @@
             background-color: #1f2937;
             color: #FFD700;
         }
+
         .banner-btn-content,
         .banner-btn-arrow {
             display: inline-block;
             transform-origin: center;
         }
+
         @keyframes bannerRollUpOut {
             0% {
                 transform: translateY(0) rotateX(0deg);
@@ -511,6 +521,7 @@
                 opacity: 0;
             }
         }
+
         @keyframes bannerRollIn {
             0% {
                 transform: translateY(100%) rotateX(0deg);
@@ -527,6 +538,7 @@
                 opacity: 1;
             }
         }
+
         .banner-btn.group:hover .banner-btn-content,
         .banner-btn.group:hover .banner-btn-arrow {
             animation: bannerRollUpOut 0.4s ease forwards, bannerRollIn 0.4s ease 0.4s forwards;
@@ -597,6 +609,7 @@
                 transform: translateX(-50%);
             }
         }
+
         .title-shadow {
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
         }
@@ -651,6 +664,7 @@
                 transform: scale(1);
             }
         }
+
         .carousel-img {
             width: 150px;
             height: 150px;
@@ -660,6 +674,7 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease, z-index 0.4s ease;
             will-change: transform;
         }
+
         .carousel-img.fade-zoom:hover {
             transform: scale(1.1) translateY(-10px) !important;
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
@@ -682,12 +697,13 @@
                 margin: 0 6px;
             }
         }
+
         .brand-carousel.animate-scroll {
             animation: scrollLoop 30s linear infinite;
         }
     </style>
     <section id="brand-logo-section" class="relative w-full overflow-hidden mx-auto pt-12 pb-0 md:pb-5 text-center">
-        <div class="absolute inset-0 bg-black/10"></div> 
+        <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative z-10">
             <h2 class="brand-title text-2xl md:text-4xl font-bold text-white title-shadow opacity-0">
                 Brands We Collaborate With
@@ -752,7 +768,7 @@
                         const totalDelay = 800 + images.length * 150 + 500;
                         setTimeout(() => {
                             carousel.classList.remove("animate-scroll");
-                            void carousel.offsetWidth; 
+                            void carousel.offsetWidth;
                             carousel.classList.add("animate-scroll");
                         }, totalDelay);
                     }
@@ -802,11 +818,13 @@
                 </a>
             </div>
 
-            <!-- Right Image -->
-            <div class="flex-1 gvr-right-image">
-                <img src="./assests/yourimage-right.jpg" alt="GVR Image" class="w-full h-auto rounded-xl shadow-xl">
+            <!-- Right Video -->
+            <div class="flex-1 gvr-right-video opacity-0 translate-y-6">
+                <video id="gvr-video" class="w-full h-auto rounded-xl shadow-xl" muted playsinline>
+                    <source src="./assests/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-
         </div>
     </section>
     <style>
@@ -858,6 +876,7 @@
         .gvr-roll-arrow {
             transform: rotate(45deg);
         }
+
         .gvr-left-content,
         .gvr-right-image,
         .gvr-subtitle,
@@ -906,7 +925,8 @@
         document.addEventListener("DOMContentLoaded", () => {
             const section = document.getElementById("about-gvr-section");
             const leftContent = section.querySelector(".gvr-left-content");
-            const rightImage = section.querySelector(".gvr-right-image");
+            const rightVideoWrapper = section.querySelector(".gvr-right-video");
+            const video = document.getElementById("gvr-video");
             const subtitle = section.querySelector(".gvr-subtitle");
             const title = section.querySelector(".gvr-title");
             const para = section.querySelector(".gvr-para");
@@ -916,47 +936,44 @@
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        [leftContent, rightImage, subtitle, title, para, button].forEach(el => {
+                        [leftContent, rightVideoWrapper, subtitle, title, para, button].forEach(el => {
                             el.style.opacity = 0;
                             el.style.animation = "none";
                             el.style.transform = "translateY(30px)";
                         });
-                        keypoints.forEach(li => { li.style.opacity = 0; li.style.animation = "none"; li.style.transform = "translateX(-30px)"; });
-                        setTimeout(() => { leftContent.style.transition = "all 0.8s ease"; leftContent.style.opacity = 1; leftContent.style.transform = "translateY(0)"; }, 100);
-                        setTimeout(() => { rightImage.style.transition = "all 0.8s ease"; rightImage.style.opacity = 1; rightImage.style.transform = "translateY(0)"; }, 300);
-                        setTimeout(() => {
-                            subtitle.style.animation = "none";
-                            void subtitle.offsetWidth;
-                            subtitle.style.animation = "gvr-slideDown 1s ease forwards";
-                        }, 500);
-                        setTimeout(() => {
-                            title.style.animation = "none";
-                            void title.offsetWidth;
-                            title.style.animation = "gvr-slideDown 1s ease forwards";
-                        }, 1000);
-                        setTimeout(() => {
-                            para.style.animation = "none";
-                            void para.offsetWidth;
-                            para.style.animation = "gvr-fadeIn 1s ease forwards";
-                        }, 1600);
-                        keypoints.forEach((li, index) => {
-                            setTimeout(() => {
-                                li.style.animation = "none";
-                                void li.offsetWidth;
-                                li.style.animation = "gvr-fadeLeft 0.8s ease forwards";
-                            }, 2600 + index * 300);
+                        keypoints.forEach(li => {
+                            li.style.opacity = 0;
+                            li.style.animation = "none";
+                            li.style.transform = "translateX(-30px)";
                         });
-                        const buttonDelay = 2600 + keypoints.length * 300 + 300;
+                        void section.offsetWidth;
+                        setTimeout(() => {
+                            leftContent.style.transition = "all 0.8s ease";
+                            leftContent.style.opacity = 1;
+                            leftContent.style.transform = "translateY(0)";
+                        }, 100);
+                        setTimeout(() => { subtitle.style.animation = "gvr-slideDown 1s ease forwards"; }, 500);
+                        setTimeout(() => { title.style.animation = "gvr-slideDown 1s ease forwards"; }, 1000);
+                        setTimeout(() => { para.style.animation = "gvr-fadeIn 1s ease forwards"; }, 1600);
+                        keypoints.forEach((li, index) => {
+                            setTimeout(() => { li.style.animation = "gvr-fadeLeft 0.8s ease forwards"; }, 2600 + index * 300);
+                        });
+                        const videoDelay = 2600 + keypoints.length * 300 + 300;
+                        setTimeout(() => {
+                            rightVideoWrapper.style.transition = "all 0.8s ease";
+                            rightVideoWrapper.style.opacity = 1;
+                            rightVideoWrapper.style.transform = "translateY(0)";
+
+                            if (video) {
+                                video.currentTime = 0;
+                                video.play().catch(err => console.log("Play blocked:", err));
+                            }
+                        }, videoDelay);
+                        const buttonDelay = videoDelay + 1000;
                         setTimeout(() => {
                             button.style.opacity = 1;
                             button.style.animation = "gvr-float 2s ease-in-out infinite";
                         }, buttonDelay);
-
-                    } else {
-                        [leftContent, rightImage, subtitle, title, para, button].forEach(el => {
-                            el.style.opacity = 0; el.style.animation = "none"; el.style.transform = "translateY(30px)";
-                        });
-                        keypoints.forEach(li => { li.style.opacity = 0; li.style.animation = "none"; li.style.transform = "translateX(-30px)"; });
                     }
                 });
             }, { threshold: 0.3 });
@@ -983,7 +1000,8 @@
                 </div>
                 <div class="ml-6 opacity-0 translate-y-6 transition-all duration-700 step-content">
                     <h3 class="text-lg md:text-xl font-bold text-white">Expert Team Members</h3>
-                    <p class="text-gray-300 text-md md:text-lg">We take pride in assembling a diverse and highly skilled.</p>
+                    <p class="text-gray-300 text-md md:text-lg">We take pride in assembling a diverse and highly
+                        skilled.</p>
                 </div>
             </div>
 
@@ -994,7 +1012,8 @@
                 </div>
                 <div class="ml-6 opacity-0 translate-y-6 transition-all duration-700 step-content">
                     <h3 class="text-lg md:text-xl font-bold text-white">Fastest Customer Service</h3>
-                    <p class="text-gray-300 text-md md:text-lg">We pride ourselves on providing the fastest customer service industry.</p>
+                    <p class="text-gray-300 text-md md:text-lg">We pride ourselves on providing the fastest customer
+                        service industry.</p>
                 </div>
             </div>
 
@@ -1005,7 +1024,8 @@
                 </div>
                 <div class="ml-6 opacity-0 translate-y-6 transition-all duration-700 step-content">
                     <h3 class="text-lg md:text-xl font-bold text-white">reasonable Pricing</h3>
-                    <p class="text-gray-300 text-md md:text-lg">We believe in providing reasonable pricing that offers exceptional.</p>
+                    <p class="text-gray-300 text-md md:text-lg">We believe in providing reasonable pricing that offers
+                        exceptional.</p>
                 </div>
             </div>
         </div>
@@ -1145,7 +1165,7 @@
                         line.style.backgroundColor = colors[color];
 
                         step++;
-                        setTimeout(nextStep, 400); 
+                        setTimeout(nextStep, 400);
                     }, 400);
                 }
                 nextStep();
@@ -1163,7 +1183,7 @@
                     const counter = counters[index];
                     counter.textContent = "0";
                     animateCounter(counter, parseInt(counter.dataset.target));
-                }, index * 200); 
+                }, index * 200);
             });
         }
 
@@ -1212,11 +1232,13 @@
         .svc-btn:hover {
             background: rgba(255, 255, 255, 0.15);
         }
+
         .svc-btn span,
         .svc-btn-arrow {
             display: inline-block;
             transform-origin: center;
         }
+
         @keyframes svc-btn-rollUpOut {
             0% {
                 transform: translateY(0) rotateX(0deg);
@@ -1233,6 +1255,7 @@
                 opacity: 0;
             }
         }
+
         @keyframes svc-btn-rollIn {
             0% {
                 transform: translateY(100%) rotateX(0deg);
@@ -1249,11 +1272,13 @@
                 opacity: 1;
             }
         }
+
         .svc-btn:hover span,
         .svc-btn:hover .svc-btn-arrow {
             animation: svc-btn-rollUpOut 0.4s ease forwards,
                 svc-btn-rollIn 0.4s ease 0.4s forwards;
         }
+
         .svc-subtitle,
         .svc-title {
             opacity: 0;
@@ -1280,6 +1305,7 @@
                 transform: translateY(0);
             }
         }
+
         .svc-card:focus-within {
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
@@ -1417,13 +1443,13 @@
             svcIndex = (svcIndex + 1) % svcCards.length;
             svcUpdateCarousel();
         }
-        
+
         const svcObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     svcSubtitle.classList.remove("svc-animate-subtitle");
                     svcTitle.classList.remove("svc-animate-title");
-                    void svcSubtitle.offsetWidth; 
+                    void svcSubtitle.offsetWidth;
                     void svcTitle.offsetWidth;
                     svcCards.forEach(card => {
                         card.style.transform = "none";
@@ -1440,7 +1466,7 @@
                             svcScrollInterval = setInterval(svcNextSlide, 2500);
                             svcAutoScrollStarted = true;
                         }
-                    }, 1000); 
+                    }, 1000);
                 } else {
                     if (svcScrollInterval) clearInterval(svcScrollInterval);
                     svcAutoScrollStarted = false;
@@ -1459,13 +1485,15 @@
                 class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left space-y-4 order-1 md:order-2">
                 <h3 id="ourproducts-timeline-subtitle"
                     class=" text-md sm:text-md md:text-lg font-medium text-white/80 opacity-0 translate-y-10">
-                    <span class="text-yellow-500 text-md sm:text-md md:text-lg">Crafting</span> Success with our products
+                    <span class="text-yellow-500 text-md sm:text-md md:text-lg">Crafting</span> Success with our
+                    products
                 </h3>
                 <h2 id="ourproducts-timeline-title"
                     class="text-3xl md:text-5xl font-bold text-white drop-shadow-lg opacity-0 translate-y-10">
                     Our Products
                 </h2>
-                <p id="ourproducts-timeline-para" class="text-white/80 mt-2 text-md sm:text-md md:text-lg max-w-lg opacity-0 translate-y-10">
+                <p id="ourproducts-timeline-para"
+                    class="text-white/80 mt-2 text-md sm:text-md md:text-lg max-w-lg opacity-0 translate-y-10">
                     GVR Infosystems mainly concentrates to provide innovative products or Application in a digital way
                     to make your work easy. We provide our services in various sectors as
                 </p>
@@ -1541,6 +1569,7 @@ border-yellow-500 text-yellow-400 font-medium opacity-0 transform transition-all
             transition: transform 0.25s ease-out;
             z-index: 0;
         }
+
         .ourproducts-timeline-circle {
             height: 60px;
             width: 60px;
@@ -1786,10 +1815,12 @@ border-yellow-500 text-yellow-400 font-medium opacity-0 transform transition-all
         .animate-title {
             animation: slideDown 1.2s ease forwards;
         }
+
         .animate-cards {
             transition: opacity 1s ease;
             opacity: 1 !important;
         }
+
         @media (max-width: 768px) {
             #client-cards {
                 animation: client-carousel 25s linear infinite;
@@ -1966,7 +1997,7 @@ border-yellow-500 text-yellow-400 font-medium opacity-0 transform transition-all
         }
     </style>
 
-     <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
+    <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
         <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
         <div class="relative z-10">
             <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gray-700">
@@ -2068,7 +2099,7 @@ border-yellow-500 text-yellow-400 font-medium opacity-0 transform transition-all
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function () {
-            emailjs.init("YOUR_USER_ID"); 
+            emailjs.init("YOUR_USER_ID");
         })();
 
         const form = document.getElementById("newsletter-form");
