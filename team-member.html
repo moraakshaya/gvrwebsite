@@ -485,15 +485,8 @@
             display: block;
             border-radius: 50%;
         }
-
-        @media (max-width: 768px) {
-            .glow-circle img {
-                width: 48px;
-                height: 48px;
-            }
-        }
     </style>
-    <section id="teammember-left-section" class="relative w-full bg-black/10 py-10 overflow-hidden">
+    <section id="teammember-left-section" class="relative w-full bg-black/10 py-5 md:py-10 overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative container mx-auto grid md:grid-cols-2 gap-12 px-6 md:px-20 z-10">
 
@@ -567,18 +560,18 @@
         leftObserver.observe(leftSection);
     </script>
     <!-- PROFESSIONAL SKILLS SECTION-->
-    <section id="teammember-section" class="relative w-full bg-black/20 py-16 overflow-hidden">
+    <section id="teammember-section" class="relative w-full bg-black/20 py-5 md:py-16 overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative container mx-auto px-6 md:px-20 z-10 grid md:grid-cols-2 gap-12 text-white">
             <!-- Left: Educational Experience -->
-            <div id="teammemberinfo-left" class="space-y-6">
+            <div id="teammemberinfo-left" class="space-y-3 md:space-y-6">
                 <h2 id="teammemberinfo-heading"
                     class="text-3xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700"
                     data-teammemberinfo-animate="slide-up">
                     Educational Experience
                 </h2>
 
-                <p id="teammemberinfo-para" class="text-lg opacity-0 translate-y-10 transition-all duration-700"
+                <p id="teammemberinfo-para" class="text-md md:text-lg text-gray-400  opacity-0 translate-y-10 transition-all duration-700"
                     data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="300">
                     Armed with a Bachelor's degree in Computer Science from the University of XYZ, I specialized in data
                     structures, algorithms, and networks. Expanding my knowledge, I pursued a Master's in Information
@@ -586,12 +579,12 @@
                 </p>
 
                 <h3 id="teammemberinfo-subtitle"
-                    class="text-2xl font-semibold opacity-0 translate-y-10 transition-all duration-700"
+                    class="text-xl md:text-2xl font-semibold opacity-0 translate-y-10 transition-all duration-700"
                     data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="600">
                     Qualifications:
                 </h3>
 
-                <ul id="teammemberinfo-list" class="space-y-3">
+                <ul id="teammemberinfo-list" class="space-y-3 text-gray-400">
                     <li class="opacity-0 -translate-x-10 transition-all duration-700"
                         data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="900">
                         • Proficiency in systems analysis, design, implementation, and maintenance.
