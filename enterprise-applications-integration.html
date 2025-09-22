@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-         [x-cloak] { display: none !important; }
+        [x-cloak] { display: none !important; }
         @keyframes slideDown {
             from {
                 transform: translateY(-100%);
@@ -29,7 +29,6 @@
         .animate-slide-down {
             animation: slideDown 0.7s ease-out forwards;
         }
-
         @keyframes dropdownSlide {
             from {
                 transform: translateY(-10px);
@@ -316,7 +315,8 @@
                 </div>
 
                 <!-- Single links -->
-                <a href="careers.html" @click="activeLink = 'careers'" class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                <a href="careers.html" @click="activeLink = 'careers'"
+                    class="block px-3 py-2 rounded-lg hover:bg-white/10"
                     :class="activeLink === 'careers' ? 'text-yellow-400' : 'text-white'">
                     Careers
                 </a>
@@ -361,14 +361,17 @@
 
             45% {
                 transform: translateY(-100%);
+                
             }
 
             55% {
                 transform: translateY(100%);
+              
             }
 
             100% {
                 transform: translateY(0);
+
             }
         }
 
@@ -385,16 +388,14 @@
     <!-- CLOUD MIGRATION HOME BANNER SECTION -->
     <section id="cloud-banner-section" class="relative w-full bg-black/10 pt-[10%] pb-5 md:pt-[5%] overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
+        <!-- Content -->
         <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
-            <!-- Subtitle -->
             <p id="cloud-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
                 Services Details <span class="text-yellow-400">✨</span>
             </p>
-
-            <!-- Title -->
             <h2 id="cloud-title"
-                class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
-                Cloud Migration, Maintenance & Deployment
+                class="text-xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
+                Enterprise Application Integration
             </h2>
         </div>
     </section>
@@ -424,7 +425,6 @@
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            
                             cloudSubtitle.classList.remove("animate-cloudSlideUp");
                             cloudTitle.classList.remove("animate-cloudSlideUp");
                             void cloudSubtitle.offsetWidth;
@@ -441,13 +441,12 @@
                 },
                 { threshold: 0.3 }
             );
-
             cloudObserver.observe(cloudSection);
         });
     </script>
 
     <!-- VIDEO SECTION -->
-    <section id="video-section" class="relative w-full bg-black/10 overflow-hidden py-10">
+    <section id="video-section" class="relative w-full bg-black/10 overflow-hidden py-0 md:py-10">
         <div class="absolute inset-0 bg-black/10"></div>
         <div class="relative z-10 max-w-6xl mx-auto px-4">
             <div id="video-container"
@@ -458,14 +457,12 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
                 </iframe>
-
             </div>
         </div>
     </section>
     <script>
         const videoSection = document.getElementById("video-section");
         const videoContainer = document.getElementById("video-container");
-
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -484,36 +481,31 @@
     </script>
 
     <!-- ABOUT SECTION -->
-    <section id="cloud-section" class="relative w-full bg-black/10 pt-5 pb-16 overflow-hidden">
+    <section id="cloud-section" class="relative w-full bg-black/10 pt-0 md:pt-5 pb-5 md:pb-16 overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
-            <!-- Heading -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">>
             <h2 id="cloud-heading"
                 class="text-2xl md:text-4xl font-bold text-white opacity-0 translate-y-10 transition-all duration-700">
-                Cloud Migration, Maintenance & Deployment
+               Enterprise Application Integration
             </h2>
-
-            <!-- Paragraph -->
             <p id="cloud-para"
-                class="mt-6 text-gray-300 text-lg opacity-0 translate-y-10 transition-all duration-700 delay-200">
+                class="mt-1 md:mt-6 text-gray-300 text-md md:text-lg opacity-0 translate-y-10 transition-all duration-700 delay-200">
                 We provides custom software development services to clients when their business strategies and
                 requirements are not adequately met by existing software system. We work closely with the clients to
                 understand their business objectives, define their software requirements, write specifications by
                 involving our experienced business analyst and subject matter expert, design, architect, develop, test
                 and integrate the custom software across multiple other systems and platforms including internet, cloud
                 and disparate systems enabling the system to function and optimally operate seamlessly for our clients.
-                <br><br>
+                <br>
                 We take a holistic approach to network design, considering factors such as bandwidth requirements,
                 security protocols, scalability, and future growth potential. By leveraging industry best practices and
                 cutting-edge technologies.
             </p>
         </div>
     </section>
-
     <script>
         const heading = document.getElementById('cloud-heading');
         const para = document.getElementById('cloud-para');
-
         const aboutobserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -531,7 +523,6 @@
                 }
             });
         }, { threshold: 0.3 });
-
         aboutobserver.observe(document.getElementById('cloud-section'));
     </script>
 
@@ -556,6 +547,7 @@
         .grabbing {
             cursor: grabbing !important;
         }
+
         .animate-slide-up {
             opacity: 0;
             transform: translateY(40px);
@@ -567,14 +559,13 @@
             transform: translateY(0);
         }
     </style>
-    <section class="relative w-full bg-black/10 pt-0 pb-5 overflow-hidden text-white">
+    <section class="relative w-full bg-black/10 pt-5 md:pt-0 pb-5 overflow-hidden text-white">
         <div class="absolute inset-0 bg-black/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-start px-6">
-
+        <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 md:gap-10 items-start px-6">
             <!-- Left: Service Process Carousel -->
             <div class="flex flex-col items-center text-center relative">
-                <h2 class="text-4xl font-bold mb-6">Service <span class="text-yellow-500">Process</span></h2>
-                <div id="process-carousel" class="relative w-[400px] h-[400px] px-[21%] py-[18%] md:px-[15%] md:py-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-5 md:mb-6">Service <span class="text-yellow-500">Process</span></h2>
+                <div id="process-carousel" class="relative w-[400px] h-[350px] md:h-[400px] px-[21%] pt-[10%] md:px-[15%] md:py-16">
                     <!-- Cards -->
                     <div
                         class="process-card absolute w-60 h-60 bg-gradient-to-br from-gray-800 to-gray-700 rounded-xl shadow-2xl flex flex-col justify-center items-center text-center p-6">
@@ -610,14 +601,14 @@
             </div>
 
             <!-- Right: Services Outcome -->
-            <div class="space-y-6 right-content">
-                <h2 class="text-4xl font-bold animate-slide-up">Services <span class="text-yellow-500">Outcome</span>
+            <div class="space-y-3 md:space-y-6 right-content text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-bold animate-slide-up">Services <span class="text-yellow-500">Outcome</span>
                 </h2>
                 <p class="text-gray-300 animate-slide-up">
                     Here are six key points that can be associated with a digital Transformation gallery case global
                     Digital Systems Engineer Services leader helping Fortune 500 companies on their innovation agenda:
                 </p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-2 md:pt-4">
                     <div class="bg-gray-800/70 rounded-xl p-4 shadow-md animate-slide-up">Scalability and Flexibility
                     </div>
                     <div class="bg-gray-800/70 rounded-xl p-4 shadow-md animate-slide-up">Security and Compliance</div>
@@ -636,7 +627,6 @@
         const processTotal = processCards.length;
         let processAngle = 360 / processTotal;
         let processCurrent = 0;
-
         function rotateProcessCarousel() {
             processCards.forEach((card, i) => {
                 const cardAngle = processAngle * i + processCurrent;
@@ -647,13 +637,11 @@
                 card.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${cardAngle}deg)`;
             });
         }
-
         rotateProcessCarousel();
         document.getElementById('process-next').addEventListener('click', () => {
             processCurrent -= processAngle;
             rotateProcessCarousel();
         });
-
         document.getElementById('process-prev').addEventListener('click', () => {
             processCurrent += processAngle;
             rotateProcessCarousel();
@@ -663,20 +651,17 @@
         let processVelocity = 0;
         let processSensitivity = 0.3;
         let processAnimationFrame;
-
         function startProcessDrag(e) {
             isProcessDragging = true;
             processStartX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
             processCarousel.classList.add('grabbing');
             cancelAnimationFrame(processAnimationFrame);
         }
-
         function stopProcessDrag() {
             isProcessDragging = false;
             processCarousel.classList.remove('grabbing');
             requestProcessInertia();
         }
-
         function processDrag(e) {
             if (!isProcessDragging) return;
             const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
@@ -686,7 +671,6 @@
             processStartX = currentX;
             rotateProcessCarousel();
         }
-
         function requestProcessInertia() {
             processVelocity *= 0.95;
             if (Math.abs(processVelocity) < 0.01) return;
@@ -694,12 +678,10 @@
             rotateProcessCarousel();
             processAnimationFrame = requestAnimationFrame(requestProcessInertia);
         }
-
         processCarousel.addEventListener('mousedown', startProcessDrag);
         processCarousel.addEventListener('mousemove', processDrag);
         processCarousel.addEventListener('mouseup', stopProcessDrag);
         processCarousel.addEventListener('mouseleave', stopProcessDrag);
-
         processCarousel.addEventListener('touchstart', startProcessDrag);
         processCarousel.addEventListener('touchmove', processDrag);
         processCarousel.addEventListener('touchend', stopProcessDrag);
@@ -710,9 +692,10 @@
                     rightContent.forEach((el, i) => {
                         setTimeout(() => {
                             el.classList.add('active');
-                        }, i * 200); 
+                        }, i * 200);
                     });
                 } else {
+
                     rightContent.forEach(el => el.classList.remove('active'));
                 }
             });
@@ -730,7 +713,7 @@
 
                 <!-- Left: Logo + Address -->
                 <div>
-                    <img src="logo.png" alt="GVR Logo" class="h-12 mb-4">
+                    <img src="./assests/gvrlogo.png" alt="GVR Logo" class="h-12 mb-4">
                     <p class="text-md mb-4">
                         Plot No. 3, 3rd Floor, Sri Sai Enclave, Old Bowenpally, HYDERABAD, INDIA
                     </p>
