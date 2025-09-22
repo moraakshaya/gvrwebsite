@@ -13,7 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
+
         @keyframes slideDown {
             from {
                 transform: translateY(-100%);
@@ -29,6 +32,7 @@
         .animate-slide-down {
             animation: slideDown 0.7s ease-out forwards;
         }
+
         @keyframes dropdownSlide {
             from {
                 transform: translateY(-10px);
@@ -44,6 +48,7 @@
         .dropdown-animate {
             animation: dropdownSlide 0.3s ease-out forwards;
         }
+
         @keyframes staggerFade {
             from {
                 transform: translateY(-5px);
@@ -212,12 +217,12 @@
             <!-- Mobile Toggle -->
             <button @click="open = !open"
                 class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
-                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -315,7 +320,8 @@
                 </div>
 
                 <!-- Single links -->
-                <a href="careers.html" @click="activeLink = 'careers'" class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                <a href="careers.html" @click="activeLink = 'careers'"
+                    class="block px-3 py-2 rounded-lg hover:bg-white/10"
                     :class="activeLink === 'careers' ? 'text-yellow-400' : 'text-white'">
                     Careers
                 </a>
@@ -352,7 +358,6 @@
             </div>
         </div>
     </nav>
-
     <style>
         @keyframes rollUpDown {
             0% {
@@ -382,21 +387,21 @@
         }
     </style>
 
-    <!-- TEAM MEMBERS SECTION -->
-    <section id="team-section" class="relative w-full bg-black/10 pt-[28%] md:pt-[8%] pb-5 md:pb-10 overflow-hidden">
+    <!--  TEAM MEMBER BANNER SECTION-->
+    <section id="team-banner-section" class="relative w-full bg-black/10 pt-[10%] pb-0 md:pt-[5%] overflow-hidden">
         <div class="absolute inset-0 bg-black/10"></div>
-        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-            <p id="team-subtitle" class="italic text-white text-sm md:text-lg mb-1 opacity-0 translate-y-10">
-                Team Members <span class="text-yellow-400">😍</span>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
+            <p id="team-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
+                Team Details <span class="text-yellow-400">😍</span>
             </p>
-            <h2 id="team-title" class="text-3xl md:text-4xl font-bold text-yellow-400 mb-5 opacity-0 translate-y-10">
-                Team Member
+            <h2 id="team-title"
+                class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
+                Team Details
             </h2>
         </div>
     </section>
-
     <style>
-        @keyframes slideUp {
+        @keyframes teamSlideUp {
             0% {
                 transform: translateY(30px);
                 opacity: 0;
@@ -408,456 +413,364 @@
             }
         }
 
-        .animate-slideUp {
-            animation: slideUp 0.8s ease-out forwards;
+        .animate-teamSlideUp {
+            animation: teamSlideUp 0.8s ease-out forwards;
         }
     </style>
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const subtitle = document.getElementById("team-subtitle");
-            const title = document.getElementById("team-title");
-            const section = document.getElementById("team-section");
+            const teamSubtitle = document.getElementById("team-subtitle");
+            const teamTitle = document.getElementById("team-title");
+            const teamSection = document.getElementById("team-banner-section");
 
-            const observer = new IntersectionObserver(
+            const teamObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            subtitle.classList.remove("animate-slideUp");
-                            title.classList.remove("animate-slideUp");
-                            void subtitle.offsetWidth;
-                            void title.offsetWidth;
-                            subtitle.classList.add("animate-slideUp");
+                            teamSubtitle.classList.remove("animate-teamSlideUp");
+                            teamTitle.classList.remove("animate-teamSlideUp");
+                            void teamSubtitle.offsetWidth;
+                            void teamTitle.offsetWidth;
+                            teamSubtitle.classList.add("animate-teamSlideUp");
                             setTimeout(() => {
-                                title.classList.add("animate-slideUp");
+                                teamTitle.classList.add("animate-teamSlideUp");
                             }, 500);
                         } else {
-                            subtitle.classList.remove("animate-slideUp");
-                            title.classList.remove("animate-slideUp");
-                        }
-                    });
-                },
-                { threshold: 0.3 }
-            );
-            observer.observe(section);
-        });
-    </script>
-
-
-
-
-    <!-- TEAM SECTION -->
-    <section id="dedicated-team" class="relative w-full bg-black/10 pt-5 pb-5 overflow-hidden">
-        <div class="absolute inset-0 bg-black/10"></div>
-        <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div class="space-y-6 text-left">
-
-                <p id="subtitle" class="text-lg md:text-xl text-white font-medium opacity-0 translate-y-10">
-                    Our Dedicated <span id="team-word" class="text-yellow-400 inline-block">Team 🙂</span>
-                </p>
-
-                <h2 id="title" class="text-xl md:text-2xl lg:text-5xl font-bold text-white opacity-0 translate-y-10"
-                    style="text-shadow: 2px 2px 10px rgba(0,0,0,0.8);">
-                    Get to Know Our Expert GVR Team
-                </h2>
-
-                <p id="paragraph" class="text-gray-300 text-md leading-relaxed opacity-0">
-                    Get acquainted with the powerhouse behind GVR – our expert team of professionals dedicated to
-                    revolutionizing the IT landscape Comprising.
-                </p>
-
-                <a id="cta-btn" href="/team"
-                    class="teammembersection-button group relative inline-flex items-center px-3 py-2 md:px-6 md:py-3 rounded-full bg-white/10 backdrop-blur-md border border-yellow-400 text-yellow-400 font-semibold overflow-hidden opacity-0 transition-all duration-500">
-                    <span class="teammembersection-roll-text inline-block">Talk To An Expert</span>
-                    <span class="teammembersection-roll-arrow inline-block ml-3">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-6 6m6-6l6 6" />
-                        </svg>
-                    </span>
-                </a>
-
-            </div>
-
-            <!-- Right Part (Image) -->
-            <div class="flex justify-center md:justify-end">
-                <img src="https://via.placeholder.com/400x400" alt="Team Image"
-                    class="rounded-2xl shadow-lg max-w-full">
-            </div>
-        </div>
-    </section>
-
-    <style>
-        #dedicated-team .teammembersection-roll-text,
-        #dedicated-team .teammembersection-roll-arrow {
-            display: inline-block;
-            transform-origin: center;
-        }
-        @keyframes teammembersection-rollUpOut {
-            0% {
-                transform: translateY(0) rotateX(0deg);
-                opacity: 1;
-            }
-
-            50% {
-                transform: translateY(-100%) rotateX(90deg);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(100%) rotateX(0deg);
-                opacity: 0;
-            }
-        }
-        @keyframes teammembersection-rollIn {
-            0% {
-                transform: translateY(100%) rotateX(0deg);
-                opacity: 0;
-            }
-
-            50% {
-                transform: translateY(-20%) rotateX(-10deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(0) rotateX(0deg);
-                opacity: 1;
-            }
-        }
-        #dedicated-team .teammembersection-button.group:hover .teammembersection-roll-text,
-        #dedicated-team .teammembersection-button.group:hover .teammembersection-roll-arrow {
-            animation: teammembersection-rollUpOut 0.4s ease forwards,
-                teammembersection-rollIn 0.4s ease 0.4s forwards;
-        }
-        #dedicated-team .teammembersection-roll-arrow {
-            transform: rotate(45deg);
-        }
-
-        @keyframes slideUp {
-            0% {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes rollDown {
-            0% {
-                transform: rotateX(-90deg);
-                opacity: 0;
-            }
-
-            50% {
-                transform: rotateX(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: rotateX(0deg);
-                opacity: 1;
-            }
-        }
-
-        @keyframes floatUpDown {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-6px);
-            }
-        }
-        .show {
-            opacity: 1 !important;
-        }
-        .animate-slideUp {
-            animation: slideUp 0.8s ease-out forwards;
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .animate-roll-down {
-            display: inline-block;
-            animation: rollDown 3s ease-in-out infinite;
-        }
-
-        .animate-float {
-            animation: floatUpDown 3s ease-in-out infinite;
-        }
-        .gvr-button:hover .gvr-roll-text {
-            transform: translateX(-5px);
-            transition: transform 0.3s ease;
-        }
-
-        .gvr-button:hover .gvr-roll-arrow {
-            transform: rotate(90deg) translateX(3px);
-            transition: transform 0.3s ease;
-        }
-    </style>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const section = document.getElementById("dedicated-team");
-            const subtitle = document.getElementById("subtitle");
-            const teamWord = document.getElementById("team-word");
-            const title = document.getElementById("title");
-            const paragraph = document.getElementById("paragraph");
-            const btn = document.getElementById("cta-btn");
-
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            subtitle.classList.add("animate-slideUp", "show");
-                            setTimeout(() => teamWord.classList.add("animate-roll-down", "show"), 800);
-                            setTimeout(() => title.classList.add("animate-slideUp", "show"), 1000);
-                            setTimeout(() => paragraph.classList.add("animate-fadeIn", "show"), 1500);
-                            setTimeout(() => {
-                                btn.classList.add("animate-fadeIn", "show");
-                                setTimeout(() => btn.classList.add("animate-float"), 1000);
-                            }, 2000);
-
-                        } else {
-                            subtitle.classList.remove("animate-slideUp", "show");
-                            teamWord.classList.remove("animate-roll-down", "show");
-                            title.classList.remove("animate-slideUp", "show");
-                            paragraph.classList.remove("animate-fadeIn", "show");
-                            btn.classList.remove("animate-fadeIn", "animate-float", "show");
+                            teamSubtitle.classList.remove("animate-teamSlideUp");
+                            teamTitle.classList.remove("animate-teamSlideUp");
                         }
                     });
                 },
                 { threshold: 0.3 }
             );
 
-
-
-            observer.observe(section);
+            teamObserver.observe(teamSection);
         });
     </script>
 
-
-
-    <!-- TEAM MEMBERS PERSONS SECTION -->
-
-    <section class="relative w-full bg-black/10 pt-10 pb-5 overflow-hidden" id="team-section">
-        <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
-        <!-- Content -->
-        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-
-            <h3 class="text-lg md:text-xl font-semibold text-yellow-500 mb-4 opacity-0 transform translate-y-10 slide-up"
-                data-delay="0">
-                Our Expert Team Members 😍
-            </h3>
-
-            <h2 class="text-2xl md:text-4xl font-extrabold text-white text-shadow mb-10 opacity-0 transform translate-y-10 slide-up"
-                data-delay="0.3">
-                Top Skilled Experts
-            </h2>
-
-            <!-- Cards Container -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center">
-
-                <!-- Card 1 -->
-                <div class="bg-white/10 rounded-2xl p-6 flex flex-col items-center opacity-0 transform translate-y-10 slide-up card"
-                    data-delay="0.6">
-                    <img src="./assests/team2.jpg" alt="Team Member"
-                        class="team-img w-100 h-80 object-cover rounded-md mb-4">
-
-                    <div class="flex items-center space-x-3 mb-2">
-                        <h4 class="text-xl font-semibold text-white">Govardhan Peluri</h4>
-                        <a href="team-member.html" target="_blank"
-                            class="arrow-btn w-8 h-8 flex items-center justify-center rounded-full bg-transparent border border-white text-white shadow-[0_0_15px_rgba(0,123,255,0.8)] transition-all duration-300 hover:bg-blue-500 hover:border-blue-500 active:bg-blue-600">
-                            <i class="fas fa-arrow-right transform -rotate-45"></i>
-                        </a>
-                    </div>
-
-                    <p class="text-gray-300 mb-3">Associate Software Engineer</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white/10 rounded-2xl p-6 flex flex-col items-center opacity-0 transform translate-y-10 slide-up card"
-                    data-delay="0.7">
-                    <img src="./assests/team2.jpg" alt="Team Member"
-                        class="team-img w-100 h-80 object-cover rounded-md mb-4">
-
-                    <div class="flex items-center space-x-3 mb-2">
-                        <h4 class="text-xl font-semibold text-white">Vamshikrishna Punjala</h4>
-                        <a href="team-member2.html" target="_blank"
-                            class="arrow-btn w-8 h-8 flex items-center justify-center rounded-full bg-transparent border border-white text-white shadow-[0_0_15px_rgba(0,123,255,0.8)] transition-all duration-300 hover:bg-blue-500 hover:border-blue-500 active:bg-blue-600">
-                            <i class="fas fa-arrow-right transform -rotate-45"></i>
-                        </a>
-                    </div>
-
-                    <p class="text-gray-300 mb-3">Project Manager</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white hover:text-yellow-400"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
+    <!--TEAM SECTION -->
     <style>
-        @keyframes slideUpAnim {
-            0% {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .slide-up.active {
-            animation: slideUpAnim 1s forwards;
-        }
-
-        .text-shadow {
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-        }
-        @keyframes pulseArrow {
+        @keyframes pulseGlow {
 
             0%,
             100% {
-                transform: scale(1) rotate(-45deg);
+                box-shadow: 0 0 10px 3px rgba(0, 128, 255, 0.4);
             }
 
             50% {
-                transform: scale(1.3) rotate(-45deg);
+                box-shadow: 0 0 15px 5px rgba(0, 128, 255, 0.5);
             }
         }
-        .card:hover .arrow-btn i,
-        .card:active .arrow-btn i {
-            animation: pulseArrow 0.6s ease-in-out infinite;
-        }
-        .team-img {
-            transition: transform 0.4s ease;
+
+        .glow-circle {
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            animation: pulseGlow 2s infinite ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.7s ease-in-out;
+            opacity: 0;
         }
 
-        .card:hover .team-img,
-        .card:active .team-img {
+        .glow-circle.visible {
+            opacity: 1;
+        }
+
+        .glow-circle:hover {
             transform: scale(1.05);
         }
+
+        .glow-circle img {
+            display: block;
+            border-radius: 50%;
+        }
     </style>
-    <script>
-        const elements = document.querySelectorAll('.slide-up');
+    <section id="teammember-left-section" class="relative w-full bg-black/10 py-5 md:py-10 overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative container mx-auto grid md:grid-cols-2 gap-12 px-6 md:px-20 z-10">
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const delay = entry.target.getAttribute('data-delay') || 0;
-                    entry.target.style.animationDelay = `${delay}s`;
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active'); 
-                    entry.target.style.animationDelay = '0s';
-                }
-            });
-        }, { threshold: 0.2 });
-
-        elements.forEach(el => observer.observe(el));
-    </script>
-
-
-
-    <!-- GLOBAL TEAM SECTION -->
-    <section id="global-team-section" class="relative w-full bg-black/10 overflow-hidden pt-0 pb-5 md:py-10">
-        <div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
-        <div class="relative z-10 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center px-6 md:px-12">
-            <!-- Left Side: Image -->
-            <div
-                class="w-full md:w-7/12 global-team-image-wrapper opacity-0 scale-90 transition-all duration-700 ease-out">
-                <img src="https://via.placeholder.com/600x400" alt="Global Team" class="w-full rounded-xl shadow-lg">
+            <!-- Left: Glow Image -->
+            <div class="flex justify-center items-center">
+                <div class="glow-circle" id="teammember-image">
+                    <img src="./assests/team2.jpg" alt="Glowing Image"
+                        class="rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover">
+                </div>
             </div>
 
-            <!-- Right Side: Content -->
-            <div class="w-full md:w-5/12 mt-10 md:mt-0 md:pl-12 text-center md:text-left">
-                <h3
-                    class="text-yellow-400 text-lg md:text-xl font-semibold mb-2 opacity-0 translate-y-10 transition-all duration-700 ease-out global-team-subtitle">
-                    GVR Company 😍
-                </h3>
-                <h2
-                    class="text-white text-2xl md:text-4xl font-bold drop-shadow-lg opacity-0 translate-y-10 transition-all duration-700 ease-out global-team-title">
-                    Our Global Team is Growing
+            <!-- Right: Member Info -->
+            <div class="text-white flex flex-col justify-center h-full space-y-6 md:ps-10">
+                <h2 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-heading">
+                   Govardhan Peluri
                 </h2>
+
+                <ul class="space-y-3 text-md md:text-lg" id="teammemberdetail-keypoints">
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Responsibility: Associate Software Engineer
+                    </li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Experience: 2 Years</li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">
+                        Email: <a href="mailto:vamshikrishna.punjala@gvrinfosystems.com"
+                            class="text-blue-400 hover:underline">
+                            pelurigovardhan@gmail.com</a></li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Phone: 6281166152</li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700 flex gap-4">
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-facebook"></i></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
-
     <script>
-        const globalTeamSection = document.getElementById('global-team-section');
+        const leftSection = document.getElementById("teammember-left-section");
+        const leftHeading = leftSection.querySelector("#teammemberdetail-heading");
+        const leftKeyPoints = leftSection.querySelectorAll("#teammemberdetail-keypoints li");
+        const leftImage = document.getElementById("teammember-image");
 
-        const globalobserver = new IntersectionObserver(entries => {
+        const leftObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const image = entry.target.querySelector('.global-team-image-wrapper');
-                const subtitle = entry.target.querySelector('.global-team-subtitle');
-                const title = entry.target.querySelector('.global-team-title');
-
                 if (entry.isIntersecting) {
-                    image.style.opacity = '1';
-                    image.style.transform = 'scale(1)';
-                    subtitle.style.opacity = '1';
-                    subtitle.style.transform = 'translateY(0)';
-                    setTimeout(() => {
-                        title.style.opacity = '1';
-                        title.style.transform = 'translateY(0)';
-                    }, 150);
+                    leftImage.classList.add("visible");
+                    leftHeading.classList.remove("opacity-0", "translate-y-10");
+                    leftHeading.classList.add("opacity-100", "translate-y-0");
+                    leftKeyPoints.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.remove("opacity-0", "translate-y-10");
+                            item.classList.add("opacity-100", "translate-y-0");
+                        }, (index + 1) * 400);
+                    });
                 } else {
-                    image.style.opacity = '0';
-                    image.style.transform = 'scale(0.9)';
-                    subtitle.style.opacity = '0';
-                    subtitle.style.transform = 'translateY(30px)';
-                    title.style.opacity = '0';
-                    title.style.transform = 'translateY(30px)';
+                    leftImage.classList.remove("visible");
+                    leftHeading.classList.add("opacity-0", "translate-y-10");
+                    leftHeading.classList.remove("opacity-100", "translate-y-0");
+                    leftKeyPoints.forEach(item => {
+                        item.classList.add("opacity-0", "translate-y-10");
+                        item.classList.remove("opacity-100", "translate-y-0");
+                    });
                 }
             });
         }, { threshold: 0.3 });
 
-        globalobserver.observe(globalTeamSection);
+        leftObserver.observe(leftSection);
     </script>
+    <!-- PROFESSIONAL SKILLS SECTION-->
+    <section id="teammember-section" class="relative w-full bg-black/20 py-5 md:py-16 overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative container mx-auto px-6 md:px-20 z-10 grid md:grid-cols-2 gap-12 text-white">
+            <!-- Left: Educational Experience -->
+            <div id="teammemberinfo-left" class="space-y-3 md:space-y-6">
+                <h2 id="teammemberinfo-heading"
+                    class="text-3xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up">
+                    Educational Experience
+                </h2>
+
+                <p id="teammemberinfo-para" class="text-md md:text-lg text-gray-400  opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="300">
+                    Armed with a Bachelor's degree in Computer Science from the University of XYZ, I specialized in data
+                    structures, algorithms, and networks. Expanding my knowledge, I pursued a Master's in Information
+                    Technology Management at ABC University.
+                </p>
+
+                <h3 id="teammemberinfo-subtitle"
+                    class="text-xl md:text-2xl font-semibold opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="600">
+                    Qualifications:
+                </h3>
+
+                <ul id="teammemberinfo-list" class="space-y-3 text-gray-400">
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="900">
+                        • Proficiency in systems analysis, design, implementation, and maintenance.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1200">
+                        • Strong knowledge of network protocols, hardware, and software components.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1500">
+                        • Experience with virtualization technologies (VMware, Hyper-V).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1800">
+                        • Skilled in cloud computing platforms (AWS, Azure, Google Cloud).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2100">
+                        • Proficient in scripting languages (Python, PowerShell).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2400">
+                        • Experience in system security and disaster recovery planning.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2700">
+                        • Excellent problem-solving and analytical skills.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right: Professional Skills -->
+            <div id="teammember-right" class="space-y-6">
+                <h3 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-skills-heading">
+                    Professional Skills
+                </h3>
+
+                <p class="mt-4 text-md md:text-lg text-yellow-400 opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-skills-para">
+                    Project Management
+                </p>
+
+                <div class="mt-6 space-y-6" id="teammemberdetail-counters">
+                    <!-- Skill 1 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Product Development</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="98">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-blue-500 h-2 rounded w-0" data-target="98"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 2 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Problem-Solving</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="88">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-green-500 h-2 rounded w-0" data-target="88"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 3 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Communication Skills</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="99">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-purple-500 h-2 rounded w-0" data-target="99"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 4 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Passion for Helping</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="77">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-red-500 h-2 rounded w-0" data-target="77"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        const teammemberinfoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                if (entry.isIntersecting) {
+                    const delay = el.dataset.teammemberinfoDelay ? parseInt(el.dataset.teammemberinfoDelay) : 0;
+                    setTimeout(() => {
+                        if (el.dataset.teammemberinfoAnimate === "slide-up") {
+                            el.classList.remove("opacity-0", "translate-y-10");
+                            el.classList.add("opacity-100", "translate-y-0");
+                        }
+                        if (el.dataset.teammemberinfoAnimate === "slide-left") {
+                            el.classList.remove("opacity-0", "-translate-x-10");
+                            el.classList.add("opacity-100", "translate-x-0");
+                        }
+                    }, delay);
+                } else {
+                    if (el.dataset.teammemberinfoAnimate === "slide-up") {
+                        el.classList.add("opacity-0", "translate-y-10");
+                        el.classList.remove("opacity-100", "translate-y-0");
+                    }
+                    if (el.dataset.teammemberinfoAnimate === "slide-left") {
+                        el.classList.add("opacity-0", "-translate-x-10");
+                        el.classList.remove("opacity-100", "translate-x-0");
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll("[data-teammemberinfo-animate]").forEach((el) =>
+            teammemberinfoObserver.observe(el)
+        );
 
 
+        const rightSection = document.getElementById("teammember-right");
+        const rightHeading = rightSection.querySelector("#teammemberdetail-skills-heading");
+        const rightPara = rightSection.querySelector("#teammemberdetail-skills-para");
+        const skillBlocks = rightSection.querySelectorAll("#teammemberdetail-counters > div");
+        const counters = rightSection.querySelectorAll(".teammemberdetail-counter");
+        const bars = rightSection.querySelectorAll(".teammemberdetail-bar");
 
+        const rightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    rightHeading.classList.remove("opacity-0", "translate-y-10");
+                    rightHeading.classList.add("opacity-100", "translate-y-0");
+                    setTimeout(() => rightPara.classList.remove("opacity-0", "translate-y-10"), 300);
+                    skillBlocks.forEach((block, i) => {
+                        setTimeout(() => {
+                            block.classList.remove("opacity-0", "translate-y-10");
 
+                            const counter = counters[i];
+                            const bar = bars[i];
+                            const target = +counter.getAttribute("data-target");
+                            let count = 0;
+                            const step = Math.ceil(target / 50);
+                            counter.textContent = "0%";
 
+                            const interval = setInterval(() => {
+                                count += step;
+                                if (count >= target) {
+                                    counter.textContent = target + "%";
+                                    clearInterval(interval);
+                                } else {
+                                    counter.textContent = count + "%";
+                                }
+                            }, 50);
+                            bar.style.width = "0%";
+                            bar.style.transition = "width 2s ease";
+                            setTimeout(() => { bar.style.width = target + "%"; }, 200);
 
+                        }, i * 500);
+                    });
 
+                } else {
+                    rightHeading.classList.add("opacity-0", "translate-y-10");
+                    rightHeading.classList.remove("opacity-100", "translate-y-0");
+                    rightPara.classList.add("opacity-0", "translate-y-10");
 
+                    skillBlocks.forEach((block, i) => {
+                        block.classList.add("opacity-0", "translate-y-10");
+                        block.classList.remove("opacity-100", "translate-y-0");
 
+                        counters[i].textContent = "0%";
+                        bars[i].style.width = "0%";
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
 
-
+        rightObserver.observe(rightSection);
+    </script>
 
     <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
         <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
         <div class="relative z-10">
             <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gray-700">
+
                 <!-- Left: Logo + Address -->
                 <div>
                     <img src="./assests/gvrlogo.png" alt="GVR Logo" class="h-12 mb-4">
@@ -955,12 +868,11 @@
         </div>
     </footer>
 
-
     <!-- EmailJS Script -->
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function () {
-            emailjs.init("YOUR_USER_ID"); 
+            emailjs.init("YOUR_USER_ID");
         })();
 
         const form = document.getElementById("newsletter-form");
@@ -996,7 +908,6 @@
             });
         });
     </script>
-
 
 
 
