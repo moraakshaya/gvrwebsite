@@ -170,7 +170,7 @@
                         class="absolute left-0 top-full hidden group-hover:block bg-gray-900 rounded-lg shadow-lg p-2 text-white z-50 min-w-[28rem] dropdown-animate">
                         <!-- dropdown links -->
                         <a href="ayucare(hms).html"
-                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">Ayucare
+                            class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">AYUCARE
                             (HMS)</a>
                         <a href="burserele.html"
                             class="block px-4 py-2 hover:bg-white/20 hover:text-yellow-400 rounded stagger-item">BURSERELE</a>
@@ -304,7 +304,7 @@
                     <div x-show="dropdowns.products" x-transition.opacity x-transition.duration.300ms
                         class="ml-4 mt-2 px-1 py-1 space-y-2 dropdown-animate border border-white/50 rounded-lg">
                         <a href="ayucare(hms).html"
-                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">Ayucare
+                            class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">AYUCARE
                             (HMS)</a>
                         <a href="burserele.html"
                             class="block px-3 py-2 rounded-md hover:bg-white/10 hover:text-yellow-400 stagger-item">BURSERELE</a>
@@ -381,6 +381,94 @@
         }
     </style>
 
+    <!-- HOME BANNER SECTION -->
+<section id="burserelehomebanner-section" class="relative w-full bg-black/10 pt-[10%] pb-5 md:pt-[5%] overflow-hidden">
+    <div class="absolute inset-0 bg-black/10"></div>
+    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
+
+        <p id="burserelehomebanner-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
+           Product Details <span class="text-yellow-400">💡</span>
+        </p>
+        <h2 id="burserelehomebanner-title"
+            class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-6 opacity-0 translate-y-10">
+            Empora(HRM)
+        </h2>
+        <a href="https://your-website-link.com" target="_blank" 
+           class="inline-flex items-center gap-2 text-white font-medium transition duration-300 hover:text-blue-400 opacity-0 translate-y-10"
+           id="burserelehomebanner-link">
+            <i class="fa-solid fa-hand-point-right text-white text-xl animate-pulse-slow"></i>
+            Visit Website
+        </a>
+    </div>
+</section>
+<style>
+    @keyframes bursereleSlideUp {
+        0% {
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .animate-bursereleSlideUp {
+        animation: bursereleSlideUp 0.8s ease-out forwards;
+    }
+
+    @keyframes pulseSlow {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    .animate-pulse-slow {
+        animation: pulseSlow 1.5s infinite;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bursereleSubtitle = document.getElementById("burserelehomebanner-subtitle");
+        const bursereleTitle = document.getElementById("burserelehomebanner-title");
+        const bursereleLink = document.getElementById("burserelehomebanner-link");
+        const bursereleSection = document.getElementById("burserelehomebanner-section");
+
+        const bursereleObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        [bursereleSubtitle, bursereleTitle, bursereleLink].forEach(el => {
+                            el.classList.remove("animate-bursereleSlideUp");
+                            void el.offsetWidth; 
+                        });
+
+                        bursereleSubtitle.classList.add("animate-bursereleSlideUp");
+                        setTimeout(() => {
+                            bursereleTitle.classList.add("animate-bursereleSlideUp");
+                        }, 500);
+                        setTimeout(() => {
+                            bursereleLink.classList.add("animate-bursereleSlideUp");
+                        }, 1000);
+
+                    } else {
+                        bursereleSubtitle.classList.remove("animate-bursereleSlideUp");
+                        bursereleTitle.classList.remove("animate-bursereleSlideUp");
+                        bursereleLink.classList.remove("animate-bursereleSlideUp");
+                    }
+                });
+            },
+            { threshold: 0.3 } 
+        );
+
+        bursereleObserver.observe(bursereleSection);
+    });
+</script>
+
     <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
         <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
         <div class="relative z-10">
@@ -388,7 +476,7 @@
 
                 <!-- Left: Logo + Address -->
                 <div>
-                    <img src="logo.png" alt="GVR Logo" class="h-12 mb-4">
+                    <img src="./assests/gvrlogo.png" alt="GVR Logo" class="h-12 mb-4">
                     <p class="text-md mb-4">
                         Plot No. 3, 3rd Floor, Sri Sai Enclave, Old Bowenpally, HYDERABAD, INDIA
                     </p>
@@ -469,7 +557,7 @@
                 <div>
                     <h3 class="text-xl font-semibold text-white mb-3">Products</h3>
                     <ul class="space-y-2 text-md">
-                        <li><a href="ayucare(hms).html" class="hover:text-white">Ayucare(HMS)</a></li>
+                        <li><a href="ayucare(hms).html" class="hover:text-white">AYUCARE(HMS)</a></li>
                         <li><a href="burserele.html" class="hover:text-white">BURSERELE</a></li>
                         <li><a href="empora(hrm).html" class="hover:text-white">EMPORA(HRM)</a></li>
                     </ul>
