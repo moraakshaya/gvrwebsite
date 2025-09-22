@@ -13,7 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
 
         @keyframes slideDown {
             from {
@@ -215,12 +217,12 @@
             <!-- Mobile Toggle -->
             <button @click="open = !open"
                 class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
-                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -386,255 +388,391 @@
     </style>
 
     <!--  TEAM MEMBER BANNER SECTION-->
-      <section id="team-banner-section" class="relative w-full bg-black/10 pt-[10%] pb-0 md:pt-[5%] overflow-hidden">
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
-        <p id="team-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
-            Team Details <span class="text-yellow-400">😍</span>
-        </p>
-        <h2 id="team-title"
-            class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
-            Team Details
-        </h2>
-    </div>
-</section>
-<style>
-    @keyframes teamSlideUp {
-        0% {
-            transform: translateY(30px);
+    <section id="team-banner-section" class="relative w-full bg-black/10 pt-[10%] pb-0 md:pt-[5%] overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 pt-16 text-center">
+            <p id="team-subtitle" class="italic text-white text-md md:text-lg mb-1 opacity-0 translate-y-10">
+                Team Details <span class="text-yellow-400">😍</span>
+            </p>
+            <h2 id="team-title"
+                class="text-2xl md:text-4xl font-bold text-yellow-400 md:mb-10 opacity-0 translate-y-10">
+                Team Details
+            </h2>
+        </div>
+    </section>
+    <style>
+        @keyframes teamSlideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-teamSlideUp {
+            animation: teamSlideUp 0.8s ease-out forwards;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const teamSubtitle = document.getElementById("team-subtitle");
+            const teamTitle = document.getElementById("team-title");
+            const teamSection = document.getElementById("team-banner-section");
+
+            const teamObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            teamSubtitle.classList.remove("animate-teamSlideUp");
+                            teamTitle.classList.remove("animate-teamSlideUp");
+                            void teamSubtitle.offsetWidth;
+                            void teamTitle.offsetWidth;
+                            teamSubtitle.classList.add("animate-teamSlideUp");
+                            setTimeout(() => {
+                                teamTitle.classList.add("animate-teamSlideUp");
+                            }, 500);
+                        } else {
+                            teamSubtitle.classList.remove("animate-teamSlideUp");
+                            teamTitle.classList.remove("animate-teamSlideUp");
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+
+            teamObserver.observe(teamSection);
+        });
+    </script>
+
+    <!--TEAM SECTION -->
+    <style>
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px 3px rgba(0, 128, 255, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 15px 5px rgba(0, 128, 255, 0.5);
+            }
+        }
+
+        .glow-circle {
+            position: relative;
+            display: inline-block;
+            border-radius: 50%;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            animation: pulseGlow 2s infinite ease-in-out;
+            transition: transform 0.3s ease-in-out, opacity 0.7s ease-in-out;
             opacity: 0;
         }
-        100% {
-            transform: translateY(0);
+
+        .glow-circle.visible {
             opacity: 1;
         }
-    }
 
-    .animate-teamSlideUp {
-        animation: teamSlideUp 0.8s ease-out forwards;
-    }
-</style>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const teamSubtitle = document.getElementById("team-subtitle");
-        const teamTitle = document.getElementById("team-title");
-        const teamSection = document.getElementById("team-banner-section");
+        .glow-circle:hover {
+            transform: scale(1.05);
+        }
 
-        const teamObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        teamSubtitle.classList.remove("animate-teamSlideUp");
-                        teamTitle.classList.remove("animate-teamSlideUp");
-                        void teamSubtitle.offsetWidth;
-                        void teamTitle.offsetWidth;
-                        teamSubtitle.classList.add("animate-teamSlideUp");
+        .glow-circle img {
+            display: block;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .glow-circle img {
+                width: 48px;
+                height: 48px;
+            }
+        }
+    </style>
+    <section id="teammember-left-section" class="relative w-full bg-black/10 py-10 overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative container mx-auto grid md:grid-cols-2 gap-12 px-6 md:px-20 z-10">
+
+            <!-- Left: Glow Image -->
+            <div class="flex justify-center items-center">
+                <div class="glow-circle" id="teammember-image">
+                    <img src="./assests/team2.jpg" alt="Glowing Image"
+                        class="rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover">
+                </div>
+            </div>
+
+            <!-- Right: Member Info -->
+            <div class="text-white flex flex-col justify-center h-full space-y-6 md:ps-10">
+                <h2 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-heading">
+                    Vamshikrishna Punjala
+                </h2>
+
+                <ul class="space-y-3 text-md md:text-lg" id="teammemberdetail-keypoints">
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Responsibility: Project Manager
+                    </li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Experience: 15 Years</li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">
+                        Email: <a href="mailto:vamshikrishna.punjala@gvrinfosystems.com"
+                            class="text-blue-400 hover:underline">
+                            vamshikrishna.punjala@gvrinfosystems.com</a>
+                    </li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700">Phone: 9985815702</li>
+                    <li class="opacity-0 translate-y-10 transition-all duration-700 flex gap-4">
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i
+                                class="fab fa-facebook"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <script>
+        const leftSection = document.getElementById("teammember-left-section");
+        const leftHeading = leftSection.querySelector("#teammemberdetail-heading");
+        const leftKeyPoints = leftSection.querySelectorAll("#teammemberdetail-keypoints li");
+        const leftImage = document.getElementById("teammember-image");
+
+        const leftObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    leftImage.classList.add("visible");
+                    leftHeading.classList.remove("opacity-0", "translate-y-10");
+                    leftHeading.classList.add("opacity-100", "translate-y-0");
+                    leftKeyPoints.forEach((item, index) => {
                         setTimeout(() => {
-                            teamTitle.classList.add("animate-teamSlideUp");
-                        }, 500);
-                    } else {
-                        teamSubtitle.classList.remove("animate-teamSlideUp");
-                        teamTitle.classList.remove("animate-teamSlideUp");
+                            item.classList.remove("opacity-0", "translate-y-10");
+                            item.classList.add("opacity-100", "translate-y-0");
+                        }, (index + 1) * 400);
+                    });
+                } else {
+                    leftImage.classList.remove("visible");
+                    leftHeading.classList.add("opacity-0", "translate-y-10");
+                    leftHeading.classList.remove("opacity-100", "translate-y-0");
+                    leftKeyPoints.forEach(item => {
+                        item.classList.add("opacity-0", "translate-y-10");
+                        item.classList.remove("opacity-100", "translate-y-0");
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        leftObserver.observe(leftSection);
+    </script>
+    <!-- PROFESSIONAL SKILLS SECTION-->
+    <section id="teammember-section" class="relative w-full bg-black/20 py-16 overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative container mx-auto px-6 md:px-20 z-10 grid md:grid-cols-2 gap-12 text-white">
+            <!-- Left: Educational Experience -->
+            <div id="teammemberinfo-left" class="space-y-6">
+                <h2 id="teammemberinfo-heading"
+                    class="text-3xl md:text-4xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up">
+                    Educational Experience
+                </h2>
+
+                <p id="teammemberinfo-para" class="text-lg opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="300">
+                    Armed with a Bachelor's degree in Computer Science from the University of XYZ, I specialized in data
+                    structures, algorithms, and networks. Expanding my knowledge, I pursued a Master's in Information
+                    Technology Management at ABC University.
+                </p>
+
+                <h3 id="teammemberinfo-subtitle"
+                    class="text-2xl font-semibold opacity-0 translate-y-10 transition-all duration-700"
+                    data-teammemberinfo-animate="slide-up" data-teammemberinfo-delay="600">
+                    Qualifications:
+                </h3>
+
+                <ul id="teammemberinfo-list" class="space-y-3">
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="900">
+                        • Proficiency in systems analysis, design, implementation, and maintenance.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1200">
+                        • Strong knowledge of network protocols, hardware, and software components.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1500">
+                        • Experience with virtualization technologies (VMware, Hyper-V).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="1800">
+                        • Skilled in cloud computing platforms (AWS, Azure, Google Cloud).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2100">
+                        • Proficient in scripting languages (Python, PowerShell).
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2400">
+                        • Experience in system security and disaster recovery planning.
+                    </li>
+                    <li class="opacity-0 -translate-x-10 transition-all duration-700"
+                        data-teammemberinfo-animate="slide-left" data-teammemberinfo-delay="2700">
+                        • Excellent problem-solving and analytical skills.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right: Professional Skills -->
+            <div id="teammember-right" class="space-y-6">
+                <h3 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-skills-heading">
+                    Professional Skills
+                </h3>
+
+                <p class="mt-4 text-md md:text-lg text-yellow-400 opacity-0 translate-y-10 transition-all duration-700"
+                    id="teammemberdetail-skills-para">
+                    Project Management
+                </p>
+
+                <div class="mt-6 space-y-6" id="teammemberdetail-counters">
+                    <!-- Skill 1 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Product Development</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="98">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-blue-500 h-2 rounded w-0" data-target="98"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 2 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Problem-Solving</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="88">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-green-500 h-2 rounded w-0" data-target="88"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 3 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Communication Skills</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="99">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-purple-500 h-2 rounded w-0" data-target="99"></div>
+                        </div>
+                    </div>
+                    <!-- Skill 4 -->
+                    <div class="opacity-0 translate-y-10 transition-all duration-700">
+                        <div class="flex justify-between items-center mb-1">
+                            <span>Passion for Helping</span>
+                            <span class="teammemberdetail-counter font-bold" data-target="77">0%</span>
+                        </div>
+                        <div class="w-full bg-white/20 h-2 rounded">
+                            <div class="teammemberdetail-bar bg-red-500 h-2 rounded w-0" data-target="77"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        const teammemberinfoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                if (entry.isIntersecting) {
+                    const delay = el.dataset.teammemberinfoDelay ? parseInt(el.dataset.teammemberinfoDelay) : 0;
+                    setTimeout(() => {
+                        if (el.dataset.teammemberinfoAnimate === "slide-up") {
+                            el.classList.remove("opacity-0", "translate-y-10");
+                            el.classList.add("opacity-100", "translate-y-0");
+                        }
+                        if (el.dataset.teammemberinfoAnimate === "slide-left") {
+                            el.classList.remove("opacity-0", "-translate-x-10");
+                            el.classList.add("opacity-100", "translate-x-0");
+                        }
+                    }, delay);
+                } else {
+                    if (el.dataset.teammemberinfoAnimate === "slide-up") {
+                        el.classList.add("opacity-0", "translate-y-10");
+                        el.classList.remove("opacity-100", "translate-y-0");
                     }
-                });
-            },
-            { threshold: 0.3 }
+                    if (el.dataset.teammemberinfoAnimate === "slide-left") {
+                        el.classList.add("opacity-0", "-translate-x-10");
+                        el.classList.remove("opacity-100", "translate-x-0");
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll("[data-teammemberinfo-animate]").forEach((el) =>
+            teammemberinfoObserver.observe(el)
         );
 
-        teamObserver.observe(teamSection);
-    });
-</script>
 
-<section id="glow-image-section" class="relative w-full bg-black/10 py-10 overflow-hidden">
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="relative z-10 flex justify-center items-center">
-        <div class="glow-circle">
-            <img src="./assests/team2.jpg" alt="Glowing Image" class="rounded-full w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover">
-        </div>
-    </div>
-</section>
-<style>
-    @keyframes pulseGlow {
-        0%, 100% {
-            box-shadow: 0 0 10px 3px rgba(0, 128, 255, 0.4);
-        }
-        50% {
-            box-shadow: 0 0 15px 5px rgba(0, 128, 255, 0.5);
-        }
-    }
+        const rightSection = document.getElementById("teammember-right");
+        const rightHeading = rightSection.querySelector("#teammemberdetail-skills-heading");
+        const rightPara = rightSection.querySelector("#teammemberdetail-skills-para");
+        const skillBlocks = rightSection.querySelectorAll("#teammemberdetail-counters > div");
+        const counters = rightSection.querySelectorAll(".teammemberdetail-counter");
+        const bars = rightSection.querySelectorAll(".teammemberdetail-bar");
 
-    .glow-circle {
-        position: relative;
-        display: inline-block;
-        border-radius: 50%;
-        padding: 8px;
-        background: rgba(0, 0, 0, 0.2);
-        animation: pulseGlow 2s infinite ease-in-out;
-        transition: transform 0.3s ease-in-out;
-    }
+        const rightObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    rightHeading.classList.remove("opacity-0", "translate-y-10");
+                    rightHeading.classList.add("opacity-100", "translate-y-0");
+                    setTimeout(() => rightPara.classList.remove("opacity-0", "translate-y-10"), 300);
+                    skillBlocks.forEach((block, i) => {
+                        setTimeout(() => {
+                            block.classList.remove("opacity-0", "translate-y-10");
 
-    .glow-circle:hover {
-        transform: scale(1.05);
-    }
+                            const counter = counters[i];
+                            const bar = bars[i];
+                            const target = +counter.getAttribute("data-target");
+                            let count = 0;
+                            const step = Math.ceil(target / 50);
+                            counter.textContent = "0%";
 
-    .glow-circle img {
-        display: block;
-        border-radius: 50%;
-    }
-    @media (max-width: 768px) {
-        .glow-circle img {
-            width: 48; 
-            height: 48; 
-        }
-    }
-</style>
+                            const interval = setInterval(() => {
+                                count += step;
+                                if (count >= target) {
+                                    counter.textContent = target + "%";
+                                    clearInterval(interval);
+                                } else {
+                                    counter.textContent = count + "%";
+                                }
+                            }, 50);
+                            bar.style.width = "0%";
+                            bar.style.transition = "width 2s ease";
+                            setTimeout(() => { bar.style.width = target + "%"; }, 200);
 
-<section id="teammemberdetail-section" class="relative w-full bg-black/10 py-2 md:py-10 overflow-hidden">
-  <div class="absolute inset-0 bg-black/10"></div>
-  <div class="relative container mx-auto grid md:grid-cols-2 gap-12 px-2 md:px-20 z-10">
-    
-    <!-- Left Part -->
-    <div class="text-white flex flex-col justify-center h-full space-y-6 md:ps-20">
-      <!-- Heading -->
-      <h2 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-heading">
-        Vamshikrishna Punjala
-      </h2>
+                        }, i * 500);
+                    });
 
-      <!-- Key Points -->
-      <ul class="space-y-3 text-md md:text-lg" id="teammemberdetail-keypoints">
-        <li class="opacity-0 translate-y-10 transition-all duration-700">Responsibility: Project Manager</li>
-        <li class="opacity-0 translate-y-10 transition-all duration-700">Experience: 15 Years</li>
-        <li class="opacity-0 translate-y-10 transition-all duration-700">Email: <a href="mailto:vamshikrishna.punjala@gvrinfosystems.com" class="text-blue-400 hover:underline">vamshikrishna.punjala@gvrinfosystems.com</a></li>
-        <li class="opacity-0 translate-y-10 transition-all duration-700">Phone: 9985815702</li>
-        <li class="opacity-0 translate-y-10 transition-all duration-700 flex gap-4">
-          <!-- Social Media Icons -->
-          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-blue-400 text-2xl hover:text-yellow-600"><i class="fab fa-facebook"></i></a>
-        </li>
-      </ul>
-    </div>
+                } else {
+                    rightHeading.classList.add("opacity-0", "translate-y-10");
+                    rightHeading.classList.remove("opacity-100", "translate-y-0");
+                    rightPara.classList.add("opacity-0", "translate-y-10");
 
-    <!-- Right Part -->
-    <div class="text-white flex flex-col justify-center">
-      <!-- Heading -->
-      <h3 class="text-2xl md:text-3xl font-bold opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-skills-heading">
-        Professional Skills
-      </h3>
+                    skillBlocks.forEach((block, i) => {
+                        block.classList.add("opacity-0", "translate-y-10");
+                        block.classList.remove("opacity-100", "translate-y-0");
 
-      <!-- Para -->
-      <p class="mt-4 text-md md:text-lg text-yellow-400 opacity-0 translate-y-10 transition-all duration-700" id="teammemberdetail-skills-para">
-        Project Management
-      </p>
-      <div class="mt-6 space-y-6" id="teammemberdetail-counters">
-        <!-- Skill 1 -->
-        <div class="opacity-0 translate-y-10 transition-all duration-700">
-          <div class="flex justify-between items-center mb-1">
-            <span>Product Development</span>
-            <span class="teammemberdetail-counter font-bold" data-target="98">0%</span>
-          </div>
-          <div class="w-full bg-white/20 h-2 rounded">
-            <div class="teammemberdetail-bar bg-blue-500 h-2 rounded w-0" data-target="98"></div>
-          </div>
-        </div>
-        <!-- Skill 2 -->
-        <div class="opacity-0 translate-y-10 transition-all duration-700">
-          <div class="flex justify-between items-center mb-1">
-            <span>Problem-Solving</span>
-            <span class="teammemberdetail-counter font-bold" data-target="88">0%</span>
-          </div>
-          <div class="w-full bg-white/20 h-2 rounded">
-            <div class="teammemberdetail-bar bg-green-500 h-2 rounded w-0" data-target="88"></div>
-          </div>
-        </div>
-        <!-- Skill 3 -->
-        <div class="opacity-0 translate-y-10 transition-all duration-700">
-          <div class="flex justify-between items-center mb-1">
-            <span>Communication Skills</span>
-            <span class="teammemberdetail-counter font-bold" data-target="99">0%</span>
-          </div>
-          <div class="w-full bg-white/20 h-2 rounded">
-            <div class="teammemberdetail-bar bg-purple-500 h-2 rounded w-0" data-target="99"></div>
-          </div>
-        </div>
-        <!-- Skill 4 -->
-        <div class="opacity-0 translate-y-10 transition-all duration-700">
-          <div class="flex justify-between items-center mb-1">
-            <span>Passion for Helping</span>
-            <span class="teammemberdetail-counter font-bold" data-target="77">0%</span>
-          </div>
-          <div class="w-full bg-white/20 h-2 rounded">
-            <div class="teammemberdetail-bar bg-red-500 h-2 rounded w-0" data-target="77"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+                        counters[i].textContent = "0%";
+                        bars[i].style.width = "0%";
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
 
-
-<script>
-  const teammemberdetailSection = document.getElementById("teammemberdetail-section");
-  const teammemberdetailHeading = document.getElementById("teammemberdetail-heading");
-  const teammemberdetailSkillsHeading = document.getElementById("teammemberdetail-skills-heading");
-  const teammemberdetailSkillsPara = document.getElementById("teammemberdetail-skills-para");
-  const teammemberdetailKeyPoints = teammemberdetailSection.querySelectorAll("#teammemberdetail-keypoints li");
-  const teammemberdetailCounters = teammemberdetailSection.querySelectorAll(".teammemberdetail-counter");
-  const teammemberdetailBars = teammemberdetailSection.querySelectorAll(".teammemberdetail-bar");
-  const teammemberdetailSkillBlocks = teammemberdetailSection.querySelectorAll("#teammemberdetail-counters > div");
-
-  let teammemberdetailAnimated = false;
-
-  const teammemberdetailObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !teammemberdetailAnimated) {
-        teammemberdetailAnimated = true;
-        teammemberdetailHeading.classList.remove("opacity-0", "translate-y-10");
-        teammemberdetailKeyPoints.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.remove("opacity-0", "translate-y-10");
-          }, (index + 1) * 400);
-        });
-        setTimeout(() => {
-          teammemberdetailSkillsHeading.classList.remove("opacity-0", "translate-y-10");
-        }, 2500);
-        setTimeout(() => {
-          teammemberdetailSkillsPara.classList.remove("opacity-0", "translate-y-10");
-        }, 3000);
-        teammemberdetailSkillBlocks.forEach((block, i) => {
-          setTimeout(() => {
-            block.classList.remove("opacity-0", "translate-y-10");
-
-            const counter = teammemberdetailCounters[i];
-            const bar = teammemberdetailBars[i];
-            let target = +counter.getAttribute("data-target");
-            let count = 0;
-            let step = Math.ceil(target / 50);
-            let interval = setInterval(() => {
-              count += step;
-              if (count >= target) {
-                counter.textContent = target + "%";
-                clearInterval(interval);
-              } else {
-                counter.textContent = count + "%";
-              }
-            }, 50);
-            bar.style.transition = "width 2s ease";
-            setTimeout(() => {
-              bar.style.width = target + "%";
-            }, 200);
-
-          }, 3500 + (i * 800)); 
-        });
-      }
-    });
-  }, { threshold: 0.3 });
-
-  teammemberdetailObserver.observe(teammemberdetailSection);
-</script>
-
-
-
+        rightObserver.observe(rightSection);
+    </script>
 
     <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
         <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
@@ -643,7 +781,7 @@
 
                 <!-- Left: Logo + Address -->
                 <div>
-                    <img src="logo.png" alt="GVR Logo" class="h-12 mb-4">
+                    <img src="./assests/gvrlogo.png" alt="GVR Logo" class="h-12 mb-4">
                     <p class="text-md mb-4">
                         Plot No. 3, 3rd Floor, Sri Sai Enclave, Old Bowenpally, HYDERABAD, INDIA
                     </p>
