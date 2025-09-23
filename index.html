@@ -389,6 +389,7 @@
 
     <!-- HOME BANNER SECTION -->
     <style>
+        <style>
         @keyframes rollDown {
             0% {
                 transform: translateY(-120%) rotateX(90deg);
@@ -553,14 +554,19 @@
         }
     </style>
     <section
-        class="flex flex-col md:flex-row overflow-hidden items-center justify-center px-6 md:px-16 pt-10 md:pt-[13%] gap-10">
+        class="relative flex flex-col md:flex-row overflow-hidden items-center justify-center px-6 md:px-16 pt-10 md:pt-[13%] gap-10 bg-black/10">
+
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-black/10 z-0"></div>
+
         <!-- Left Image -->
-        <div class="w-full md:w-1/2 flex justify-center">
-            <img src="./assests/homebannerimg.png" alt="Business Image"
+        <div class="w-full md:w-1/2 flex justify-center relative z-10">
+            <img src="./assests/ChatGPT_Image_Sep_22__2025__05_48_54_PM-removebg-preview.png" alt="Business Image"
                 class="rounded-lg shadow-lg max-w-full h-auto">
         </div>
+
         <!-- Right Content -->
-        <div class="w-full md:w-1/2 flex flex-col justify-center text-white text-left space-y-6">
+        <div class="w-full md:w-1/2 flex flex-col justify-center text-white text-left space-y-6 relative z-10">
 
             <!-- Line 1 -->
             <h2 class="text-lg md:text-xl font-medium opacity-0 animate-slide-in" style="animation-delay: 0.5s;">
