@@ -13,7 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] {
+            display: none !important;
+        }
+
         @keyframes slideDown {
             from {
                 transform: translateY(-100%);
@@ -29,6 +32,7 @@
         .animate-slide-down {
             animation: slideDown 0.7s ease-out forwards;
         }
+
         @keyframes dropdownSlide {
             from {
                 transform: translateY(-10px);
@@ -44,6 +48,7 @@
         .dropdown-animate {
             animation: dropdownSlide 0.3s ease-out forwards;
         }
+
         @keyframes staggerFade {
             from {
                 transform: translateY(-5px);
@@ -212,12 +217,12 @@
             <!-- Mobile Toggle -->
             <button @click="open = !open"
                 class="lg:hidden w-10 h-10 flex items-center justify-center rounded-full border border-yellow-400 text-white">
-                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="!open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
-                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor"
-                    viewBox="0 0 24 24">
+                <svg x-show="open" x-cloak xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
@@ -315,7 +320,8 @@
                 </div>
 
                 <!-- Single links -->
-                <a href="careers.html" @click="activeLink = 'careers'" class="block px-3 py-2 rounded-lg hover:bg-white/10"
+                <a href="careers.html" @click="activeLink = 'careers'"
+                    class="block px-3 py-2 rounded-lg hover:bg-white/10"
                     :class="activeLink === 'careers' ? 'text-yellow-400' : 'text-white'">
                     Careers
                 </a>
@@ -384,172 +390,192 @@
 
 
     <!-- Portfolio Banner Section -->
-<section id="portfolio-banner-section" class="relative w-full bg-black/10 pt-[25%] md:pt-[10%] md:pb-5 overflow-hidden">
-    <div class="absolute inset-0 bg-black/10"></div>
-    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        <p id="portfolio-subtitle" class="italic text-white text-sm md:text-lg mb-1 opacity-0 translate-y-10">
-            Showcasing Our Work<span class="text-yellow-400">💡</span>
-        </p>
-        <h2 id="portfolio-title"
-            class="text-3xl md:text-4xl font-bold text-yellow-400 mb-5 opacity-0 translate-y-10">
-            Our Portfolio
-        </h2>
-    </div>
-</section>
+    <section id="portfolio-banner-section"
+        class="relative w-full bg-black/10 pt-[25%] md:pt-[10%] md:pb-5 overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <p id="portfolio-subtitle" class="italic text-white text-sm md:text-lg mb-1 opacity-0 translate-y-10">
+                Showcasing Our Work<span class="text-yellow-400">💡</span>
+            </p>
+            <h2 id="portfolio-title"
+                class="text-3xl md:text-4xl font-bold text-yellow-400 mb-5 opacity-0 translate-y-10">
+                Our Portfolio
+            </h2>
+        </div>
+    </section>
 
-<style>
-    @keyframes portfolioSlideUp {
-        0% {
-            transform: translateY(30px);
-            opacity: 0;
+    <style>
+        @keyframes portfolioSlideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
+
+        .animate-portfolioSlideUp {
+            animation: portfolioSlideUp 0.8s ease-out forwards;
         }
-    }
+    </style>
 
-    .animate-portfolioSlideUp {
-        animation: portfolioSlideUp 0.8s ease-out forwards;
-    }
-</style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const portfolioSubtitle = document.getElementById("portfolio-subtitle");
+            const portfolioTitle = document.getElementById("portfolio-title");
+            const portfolioSection = document.getElementById("portfolio-banner-section");
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const portfolioSubtitle = document.getElementById("portfolio-subtitle");
-        const portfolioTitle = document.getElementById("portfolio-title");
-        const portfolioSection = document.getElementById("portfolio-banner-section");
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            portfolioSubtitle.classList.remove("animate-portfolioSlideUp");
+                            portfolioTitle.classList.remove("animate-portfolioSlideUp");
+                            void portfolioSubtitle.offsetWidth;
+                            void portfolioTitle.offsetWidth;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        portfolioSubtitle.classList.remove("animate-portfolioSlideUp");
-                        portfolioTitle.classList.remove("animate-portfolioSlideUp");
-                        void portfolioSubtitle.offsetWidth;
-                        void portfolioTitle.offsetWidth;
+                            portfolioSubtitle.classList.add("animate-portfolioSlideUp");
+                            setTimeout(() => {
+                                portfolioTitle.classList.add("animate-portfolioSlideUp");
+                            }, 500);
+                        } else {
+                            portfolioSubtitle.classList.remove("animate-portfolioSlideUp");
+                            portfolioTitle.classList.remove("animate-portfolioSlideUp");
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
 
-                        portfolioSubtitle.classList.add("animate-portfolioSlideUp");
-                        setTimeout(() => {
-                            portfolioTitle.classList.add("animate-portfolioSlideUp");
-                        }, 500);
-                    } else {
-                        portfolioSubtitle.classList.remove("animate-portfolioSlideUp");
-                        portfolioTitle.classList.remove("animate-portfolioSlideUp");
-                    }
-                });
-            },
-            { threshold: 0.3 } 
-        );
-
-        observer.observe(portfolioSection);
-    });
-</script>
-
-
-<!-- Portfolio Cards Section -->
-<section id="portfolio-cards" class="relative w-full pb-5 bg-black/10 overflow-hidden">
-  <div class="absolute inset-0 bg-black/70 pointer-events-none"></div>
-  <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-    <!-- Card 1 -->
-    <div class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
-      <img src="./assests/team2.jpg" alt="Card Image" class="w-full rounded-xl transition-transform duration-500">
-      <div class="flex items-center justify-between mt-4">
-        <h3 class="text-md md:text-xl font-semibold text-white">Ayucare (HMS)</h3>
-        <div class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
-          ➜
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
-      <img src="./assests/team2.jpg" alt="Card Image" class="w-full rounded-xl transition-transform duration-500">
-      <div class="flex items-center justify-between mt-4">
-        <h3 class="text-md md:text-xl font-semibold text-white">BURSERELE</h3>
-        <div class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
-          ➜
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
-      <img src="./assests/team2.jpg" alt="Card Image" class="w-full rounded-xl transition-transform duration-500">
-      <div class="flex items-center justify-between mt-4">
-        <h3 class="text-md md:text-xl font-semibold text-white">EMPORA (HRM)</h3>
-        <div class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
-          ➜
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  @keyframes cardSlideUp {
-    0% {
-      transform: translateY(30px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  .animate-cardSlideUp {
-    animation: cardSlideUp 0.8s ease-out forwards;
-  }
-  .portfolio-card:hover img {
-    transform: scale(1.05);
-  }
-
-  .portfolio-card .arrow-btn {
-    transition: all 0.4s ease, transform 0.4s ease;
-  }
-
-  .portfolio-card:hover .arrow-btn {
-    background-color: #3b82f6;
-    color: white;
-    transform: rotate(-45deg);
-  }
-</style>
-
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const cards = document.querySelectorAll(".portfolio-card");
-    const section = document.getElementById("portfolio-cards");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            cards.forEach((card, index) => {
-              card.classList.remove("animate-cardSlideUp");
-              void card.offsetWidth;
-              setTimeout(() => {
-                card.classList.add("animate-cardSlideUp");
-              }, index * 300); 
-            });
-          } else {
-            cards.forEach((card) => card.classList.remove("animate-cardSlideUp"));
-          }
+            observer.observe(portfolioSection);
         });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(section);
-  });
-</script>
+    </script>
 
 
+    <!-- Portfolio Cards Section -->
+    <section id="portfolio-cards" class="relative w-full pb-5 bg-black/10 overflow-hidden">
+        <div class="absolute inset-0 bg-black/70 pointer-events-none"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Card 1 -->
+            <div
+                class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
+                <img src="./assests/team2.jpg" alt="Card Image"
+                    class="w-full rounded-xl transition-transform duration-500">
+                <div class="flex items-center justify-between mt-4">
+                    <h3 class="text-md md:text-xl font-semibold text-white">Ayucare (HMS)</h3>
+                    <a href="ayucare(hms).html">
+                        <div
+                            class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
+                            ➜
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div
+                class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
+                <img src="./assests/team2.jpg" alt="Card Image"
+                    class="w-full rounded-xl transition-transform duration-500">
+                <div class="flex items-center justify-between mt-4">
+                    <h3 class="text-md md:text-xl font-semibold text-white">BURSERELE</h3>
+                   <a href="burserele.html">
+                        <div
+                            class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
+                            ➜
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div
+                class="portfolio-card bg-white/5 border border-blue-400 shadow-[0_0_15px_#3b82f6] rounded-2xl overflow-hidden text-center p-5 opacity-0 translate-y-10">
+                <img src="./assests/team2.jpg" alt="Card Image"
+                    class="w-full rounded-xl transition-transform duration-500">
+                <div class="flex items-center justify-between mt-4">
+                    <h3 class="text-md md:text-xl font-semibold text-white">EMPORA (HRM)</h3>
+                    <a href="empora(hrm).html">
+                        <div
+                            class="arrow-btn w-10 h-10 border-2 border-blue-400 rounded-full flex items-center justify-center text-white cursor-pointer transition-all duration-500">
+                            ➜
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        @keyframes cardSlideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-cardSlideUp {
+            animation: cardSlideUp 0.8s ease-out forwards;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-card .arrow-btn {
+            transition: all 0.4s ease, transform 0.4s ease;
+        }
+
+        .portfolio-card:hover .arrow-btn {
+            background-color: #3b82f6;
+            color: white;
+            transform: rotate(-45deg);
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll(".portfolio-card");
+            const section = document.getElementById("portfolio-cards");
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            cards.forEach((card, index) => {
+                                card.classList.remove("animate-cardSlideUp");
+                                void card.offsetWidth;
+                                setTimeout(() => {
+                                    card.classList.add("animate-cardSlideUp");
+                                }, index * 300);
+                            });
+                        } else {
+                            cards.forEach((card) => card.classList.remove("animate-cardSlideUp"));
+                        }
+                    });
+                },
+                { threshold: 0.3 }
+            );
+
+            observer.observe(section);
+        });
+    </script>
 
 
 
-<footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
+
+
+    <footer class="relative bg-gray-900 text-gray-300 pt-10 overflow-hidden">
         <div class="absolute inset-0 bg-gray-800/70 pointer-events-none"></div>
         <div class="relative z-10">
             <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-gray-700">
@@ -655,7 +681,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         (function () {
-            emailjs.init("YOUR_USER_ID"); 
+            emailjs.init("YOUR_USER_ID");
         })();
 
         const form = document.getElementById("newsletter-form");
